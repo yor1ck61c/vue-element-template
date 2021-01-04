@@ -49,102 +49,232 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'HomePage',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '首页', icon: 'dashboard' }
     }]
   },
 
   {
-    path: '/example',
+    path: '/QuickMenu',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/QuickMenu/MonitorAlert',
+    name: 'QuickMenu',
+    meta: { title: '快捷菜单', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'MonitorAlert',
+        name: 'MonitorAlert',
+        component: () => import('@/views/QuickMenu/MonitorAlert'),
+        meta: { title: '预警监控', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'WorkReminder',
+        name: 'WorkReminder',
+        component: () => import('@/views/QuickMenu/WorkReminder'),
+        meta: { title: '工作提醒', icon: 'table' }
+      },
+      {
+        path: 'dialog',
+        name: 'dialog',
+        component: () => import('@/views/QuickMenu/dialog'),
+        meta: { title: '医患交流', icon: 'tree' }
       }
     ]
   },
 
   {
-    path: '/form',
+    path: '/HealthInterfere',
     component: Layout,
+    redirect: '/HealthInterfere/HandleAlert',
+    name: 'HealthInterfere',
+    meta: { title: '健康干预', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: 'HandleAlert',
+        name: 'HandleAlert',
+        component: () => import('@/views/HealthInterfere/HandleAlert'),
+        meta: { title: '预警处置', icon: 'table' }
+      },
+      {
+        path: 'HealthReport',
+        name: 'HealthReport',
+        component: () => import('@/views/HealthInterfere/HealthReport'),
+        meta: { title: '健康报告', icon: 'table' }
       }
     ]
   },
 
   {
-    path: '/nested',
+    path: '/SignAndRecord',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
+    redirect: '/SignAndRecord/BasicRecord',
+    name: 'SignAndRecord',
+    meta: { title: '签约建档', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: 'BasicRecord',
+        name: 'BasicRecord',
+        component: () => import('@/views/SignAndRecord/BasicRecord'),
+        meta: { title: '基本档案', icon: 'table' }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
+        path: 'ManageSign',
+        name: 'ManageSign',
+        component: () => import('@/views/SignAndRecord/ManageSign'),
+        meta: { title: '签约管理', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/HeartInternal',
+    component: Layout,
+    redirect: '/HeartInternal/test',
+    name: 'HeartInternal',
+    meta: { title: '内分泌科', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'test1',
+        name: 'test1',
+        component: () => import('@/views/table'),
+        meta: { title: 'nodata', icon: 'table' }
+      },
+      {
+        path: 'test2',
+        name: 'test2',
+        component: () => import('@/views/table'),
+        meta: { title: 'nodata', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/PhysicalExam',
+    component: Layout,
+    redirect: '/PhysicalExam/test',
+    name: 'PhysicalExam',
+    meta: { title: '体检科', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'test1',
+        name: 'test1',
+        component: () => import('@/views/table'),
+        meta: { title: 'nodata', icon: 'table' }
+      },
+      {
+        path: 'test2',
+        name: 'test2',
+        component: () => import('@/views/table'),
+        meta: { title: 'nodata', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/HealthData',
+    component: Layout,
+    redirect: '/HealthData/BodyData',
+    name: 'HealthData',
+    meta: { title: '健康数据', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'BodyData',
+        name: 'BodyData',
+        component: () => import('@/views/HealthData/BodyData'),
+        meta: { title: '体征数据', icon: 'table' }
+      },
+      {
+        path: 'BiochemicalData',
+        name: 'BiochemicalData',
+        component: () => import('@/views/HealthData/BiochemicalData'),
+        meta: { title: '生化数据', icon: 'table' }
+      },
+      {
+        path: 'ElectrophysiologicalData',
+        name: 'ElectrophysiologicalData',
+        component: () => import('@/views/HealthData/ElectrophysiologicalData'),
+        meta: { title: '电生理数据', icon: 'table' }
+      },
+      {
+        path: 'ImageData',
+        name: 'ImageData',
+        component: () => import('@/views/HealthData/ImageData'),
+        meta: { title: '影像数据', icon: 'table' }
+      },
+      {
+        path: 'OtherExam',
+        name: 'OtherExam',
+        component: () => import('@/views/HealthData/OtherExam'),
+        meta: { title: '其他检查', icon: 'table' }
+      },
+      {
+        path: 'SelectAll',
+        name: 'SelectAll',
+        component: () => import('@/views/HealthData/SelectAll'),
+        meta: { title: '全部查询', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/ReportManage',
+    component: Layout,
+    redirect: '/ReportManage/test',
+    name: 'ReportManage',
+    meta: { title: '报表管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'test1',
+        name: 'test1',
+        component: () => import('@/views/table'),
+        meta: { title: 'nodata', icon: 'table' }
+      },
+      {
+        path: 'test2',
+        name: 'test2',
+        component: () => import('@/views/table'),
+        meta: { title: 'nodata', icon: 'table' }
+      }
+    ]
+  },
+
+  {
+    path: '/SystemConfig',
+    component: Layout,
+    redirect: '/SystemConfig/DoctorTeam',
+    name: 'SystemConfig',
+    meta: { title: '系统配置', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'DoctorTeam',
+        name: 'DoctorTeam',
+        component: () => import('@/views/SystemConfig/DoctorTeam'),
+        meta: { title: '医生团队', icon: 'table' }
+      },
+      {
+        path: 'SignServePackage',
+        name: 'SignServePackage',
+        component: () => import('@/views/SystemConfig/SignServePackage'),
+        meta: { title: '签约服务包', icon: 'table' }
+      },
+      {
+        path: 'SelectAppAcccount',
+        name: 'SelectAppAcccount',
+        component: () => import('@/views/SystemConfig/SelectAppAcccount'),
+        meta: { title: '筛查APP账号', icon: 'table' }
+      },
+      {
+        path: 'DeviceStockManage',
+        name: 'DeviceStockManage',
+        component: () => import('@/views/SystemConfig/DeviceStockManage'),
+        meta: { title: '设备库存管理', icon: 'table' }
+      },
+      {
+        path: 'AdviceTemplate',
+        name: 'AdviceTemplate',
+        component: () => import('@/views/SystemConfig/AdviceTemplate'),
+        meta: { title: '医嘱模板', icon: 'table' }
       }
     ]
   },
