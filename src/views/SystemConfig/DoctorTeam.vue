@@ -84,7 +84,7 @@
             <div style="width: 100%;text-align: left;">
               <div style="font-size:18px;">我添加或加入的团队</div>
             </div>
-            <div v-for="info in JoinedDoctorTeamInfo" :key="info.Creator" style="border: slategray solid 1px; margin-top: 10px">
+            <div v-for="info in JoinedDoctorTeamInfo" :key="info.id" style="border: slategray solid 1px; margin-top: 10px">
               <div style="font-size: 16px;margin: 3px; color: #0281ff;">{{ info.TeamName }}医生团队</div>
               <div style="font-size: 13px;margin: 3px;">团队类型：{{ info.TeamType }}</div>
               <div style="font-size: 13px;margin: 3px;">创建者：{{ info.Creator }}</div>
@@ -184,5 +184,4 @@ export default {
   }
 }
 </script>
-<link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.5.6/css/layui.css">
 

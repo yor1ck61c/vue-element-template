@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import Axios from 'axios'
+// import Axios from 'axios'
 export default {
   name: 'BiochemicalData',
   data() {
@@ -72,10 +72,10 @@ export default {
     }
   },
   created() {
-    var that = this
+    /* var that = this
     Axios.post('testURL').then((res) => {
       that.BiochemicalDataTable = res.data.BiochemicalDataTable
-    })
+    })*/
   },
   methods: {
     onSearch: function() {}
