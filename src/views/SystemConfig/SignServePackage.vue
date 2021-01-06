@@ -19,7 +19,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit">搜索</el-button>
+            <el-button type="primary" @click="onSearch">搜索</el-button>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="addServePackageFormVisible = true">添加服务包</el-button>
@@ -106,8 +106,8 @@
         <el-col>
           <el-table :data="ServePackageInfos" border>
             <el-table-column label="操作" align="center">
-              <el-button size="mini">编辑</el-button>
-              <el-button size="mini">删除</el-button>
+              <el-button size="mini" @click="editServePackageInfos()">编辑</el-button>
+              <el-button size="mini" @click="deleteServePackageInfos()">删除</el-button>
             </el-table-column>
             <el-table-column prop="Name" label="名称" align="center" />
             <el-table-column prop="Level" label="等级" align="center" />
@@ -123,9 +123,11 @@
 </template>
 
 <script>
+// import { getServePackageInfos } from '@/api/SystemConfig/SignServePackage'
+// import { Message } from 'element-ui'
 import Axios from 'axios'
 export default {
-  name: 'Test',
+  name: 'SignServePackage',
   data() {
     return {
       ServePackageInfos: [],
@@ -149,6 +151,7 @@ export default {
     }
   },
   created() {
+    // this.getServePackageInfos()
     var that = this
     Axios.post(
       'https://www.fastmock.site/mock/16fddfe65af12b42183595cffa0358a8/getDeviceData/device_info'
@@ -157,7 +160,19 @@ export default {
     })
   },
   methods: {
+    /* getServePackageInfos: function() {
+      getServePackageInfos().then((res) => {
+        this.ServePackageInfos = res.data.ServePackageInfos
+        Message.success(res.data.ServePackageInfos)
+      })
+    },*/
     addServePackage: function() {
+    },
+    onSearch: function() {
+    },
+    editServePackageInfos: function() {
+    },
+    deleteServePackageInfos: function() {
     }
   }
 }
