@@ -29,14 +29,14 @@
           title="添加服务包"
           :visible.sync="addServePackageFormVisible"
         >
-          <el-form :model="NewServePackageInfo">
-            <el-form-item label="服务包名称" :label-width="formLabelWidth">
+          <el-form ref="NewServePackageInfo" :model="NewServePackageInfo" :rules="addServePackageRule">
+            <el-form-item label="服务包名称" prop="addName" :label-width="formLabelWidth">
               <el-input
                 v-model="NewServePackageInfo.addName"
                 autocomplete="off"
               />
             </el-form-item>
-            <el-form-item label="服务包编号" :label-width="formLabelWidth">
+            <el-form-item label="服务包编号" prop="addNum" :label-width="formLabelWidth">
               <el-input
                 v-model="NewServePackageInfo.addNum"
                 autocomplete="off"
@@ -69,7 +69,7 @@
                 <el-option label="区域二" value="beijing" />
               </el-select>
             </el-form-item>
-            <el-form-item label="适应人群" :label-width="formLabelWidth">
+            <el-form-item label="适应人群" prop="addFitPeople" :label-width="formLabelWidth">
               <el-input
                 v-model="NewServePackageInfo.addFitPeople"
                 autocomplete="off"
@@ -96,7 +96,7 @@
           </el-form>
           <div slot="footer" class="dialog-footer">
             <el-button @click="addServePackageFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="addServePackageFormVisible = false;addServePackage()">确 定</el-button>
+            <el-button type="primary" @click="addServePackage('NewServePackageInfo')">确 定</el-button>
           </div>
         </el-dialog>
       </div>
@@ -147,7 +147,18 @@ export default {
         addDisPrice: '',
         addDescribe: ''
       },
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      addServePackageRule: {
+        addName: [
+          { required: true, message: '请输入服务包名称', trigger: 'blur' }
+        ],
+        addNum: [
+          { required: true, message: '请输入服务包编号', trigger: 'blur' }
+        ],
+        addFitPeople: [
+          { required: true, message: '请输入适应人群', trigger: 'blur' }
+        ]
+      }
     }
   },
   created() {
@@ -166,7 +177,16 @@ export default {
         Message.success(res.data.ServePackageInfos)
       })
     },*/
-    addServePackage: function() {
+    addServePackage: function(NewServePackageInfo) {
+      this.$refs[NewServePackageInfo].validate((valid) => {
+        if (valid) {
+          alert(this.NewServePackageInfo.addName + ' ' + NewServePackageInfo.addNum + ' ' + NewServePackageInfo.addFitPeople)
+          this.addServePackageFormVisible = false
+        } else {
+          alert('cannot add!')
+          return false
+        }
+      })
     },
     onSearch: function() {
     },
