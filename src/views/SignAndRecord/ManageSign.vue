@@ -44,15 +44,15 @@
         title="新增签约合同"
         :visible.sync="addContractVisible"
       >
-        <el-form :model="addContract">
-          <el-form-item label="合同编号" :label-width="formLabelWidth">
+        <el-form ref="addContract" :model="addContract" :rules="addContractRules">
+          <el-form-item label="合同编号" prop="ContractNum" :label-width="formLabelWidth">
             <el-input
               v-model="addContract.ContractNum"
               autocomplete="off"
               style="width:90%"
             />
           </el-form-item>
-          <el-form-item label="甲方" :label-width="formLabelWidth">
+          <el-form-item label="甲方" prop="PartyA" :label-width="formLabelWidth">
             <el-input
               v-model="addContract.PartyA"
               autocomplete="off"
@@ -81,7 +81,7 @@
               style="width:150px; margin-left: 20px;"
             />
           </el-form-item>
-          <el-form-item label="服务包" :label-width="formLabelWidth">
+          <el-form-item label="服务包" prop="ServePackage" :label-width="formLabelWidth">
             <el-select
               v-model="addContract.ServePackage"
               placeholder="请选择服务包"
@@ -90,14 +90,14 @@
               <el-option label="二级" value="beijing" />
             </el-select>
           </el-form-item>
-          <el-form-item label="确诊疾病" style="margin-left: 52px;">
+          <el-form-item label="确诊疾病" prop="Disease" style="margin-left: 52px;">
             <el-checkbox-group v-model="addContract.Disease">
               <el-checkbox label="心脏病" value="心脏病" />
               <el-checkbox label="高血压" value="高血压" />
               <el-checkbox label="糖尿病" value="糖尿病" />
             </el-checkbox-group>
           </el-form-item>
-          <el-form-item label="检测指标" :label-width="formLabelWidth">
+          <el-form-item label="检测指标" prop="TestTarget" :label-width="formLabelWidth">
             <el-select
               v-model="addContract.TestTarget"
               placeholder="请选择检测指标"
@@ -106,7 +106,31 @@
               <el-option label="二级" value="beijing" />
             </el-select>
           </el-form-item>
-          <el-form-item label="合同模板" :label-width="formLabelWidth">
+          <el-form-item label="医生团队" prop="DoctorTeam" :label-width="formLabelWidth">
+            <el-select
+              v-model="addContract.DoctorTeam"
+              placeholder="请选择检测指标"
+            >
+              <el-option label="一级" value="shanghai" />
+              <el-option label="二级" value="beijing" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="设备序列号" :label-width="formLabelWidth">
+            <el-input v-model="addContract.DeviceSerialNum" style="width: 90%" placeholder="设备序列号">
+              <template slot="append">
+                <el-button type="primary">添 加</el-button>
+              </template>
+            </el-input>
+            <el-table :data="DeviceInfo" border style="margin-top: 20px;width: 90%;">
+              <el-table-column prop="SerialNum" label="设备序列号" align="center" />
+              <el-table-column prop="TypeName" label="类型名称" align="center" />
+              <el-table-column label="操作" align="center">
+                <el-button size="mini">详情</el-button>
+                <el-button size="mini">删除</el-button>
+              </el-table-column>
+            </el-table>
+          </el-form-item>
+          <el-form-item label="合同模板" prop="ContractTemplate" :label-width="formLabelWidth">
             <el-select
               v-model="addContract.ContractTemplate"
               placeholder="请选择团队状态"
@@ -115,7 +139,7 @@
               <el-option label="区域二" value="beijing" />
             </el-select>
           </el-form-item>
-          <el-form-item label="缴费" style="margin-left: 78px;">
+          <el-form-item label="缴费" prop="IsPaid" style="margin-left: 78px;">
             <el-radio-group v-model="addContract.IsPaid">
               <el-radio label="已缴费" value="true" />
               <el-radio label="未缴费" value="false" />
@@ -130,7 +154,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addContractVisible = false">取 消</el-button>
-          <el-button type="primary" @click="addContractVisible = false;addDoctorTeam()">确 定</el-button>
+          <el-button type="primary" @click="addContractInfo('addContract')">确 定</el-button>
         </div>
       </el-dialog>
     </el-header>
@@ -179,6 +203,7 @@ export default {
         ServePackage: '',
         Disease: [],
         TestTarget: '',
+        DoctorTeam: '',
         ContractTemplate: '',
         IsPaid: '',
         SignRemark: ''
@@ -190,6 +215,36 @@ export default {
         EndTime: '',
         ContractStatus: '',
         SignStatus: ''
+      },
+      DeviceInfo: {
+        SerialNum: '',
+        TypeName: ''
+      },
+      addContractRules: {
+        ContractNum: [
+          { required: true, message: '请输入合同编号', trigger: 'blur' }
+        ],
+        PartyA: [
+          { required: true, message: '请输入甲方姓名', trigger: 'blur' }
+        ],
+        ServePackage: [
+          { required: true, message: '请选择服务包', trigger: 'change' }
+        ],
+        Disease: [
+          { type: 'array', required: true, message: '确诊疾病不能为空', trigger: 'change' }
+        ],
+        TestTarget: [
+          { required: true, message: '检测指标不能为空', trigger: 'change' }
+        ],
+        DoctorTeam: [
+          { required: true, message: '请选择医生团队', trigger: 'change' }
+        ],
+        ContractTemplate: [
+          { required: true, message: '请选择合同模板', trigger: 'change' }
+        ],
+        IsPaid: [
+          { required: true, message: '请选择缴费情况', trigger: 'change' }
+        ]
       }
     }
   },
@@ -200,7 +255,18 @@ export default {
     })*/
   },
   methods: {
-    onSearch: function() {}
+    onSearch: function() {},
+    addContractInfo: function(addContractInfo) {
+      this.$refs[addContractInfo].validate((valid) => {
+        if (valid) {
+          alert('can Submit')
+          this.addContractVisible = false
+        } else {
+          alert('cannot Submit')
+          return false
+        }
+      })
+    }
   }
 }
 </script>

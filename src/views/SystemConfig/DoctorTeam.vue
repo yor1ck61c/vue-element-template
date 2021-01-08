@@ -16,8 +16,8 @@
         title="新增团队"
         :visible.sync="addDoctorTeamFormVisible"
       >
-        <el-form :model="NewDoctorTeamInfo">
-          <el-form-item label="团队名称" :label-width="formLabelWidth">
+        <el-form ref="NewDoctorTeamInfo" :model="NewDoctorTeamInfo" :rules="addDoctorTeamRules">
+          <el-form-item label="团队名称" prop="addName" :label-width="formLabelWidth">
             <el-input
               v-model="NewDoctorTeamInfo.addName"
               autocomplete="off"
@@ -40,7 +40,7 @@
               <el-option label="二级" value="beijing" />
             </el-select>
           </el-form-item>
-          <el-form-item label="团队描述" :label-width="formLabelWidth">
+          <el-form-item label="团队描述" prop="teamDescribe" :label-width="formLabelWidth">
             <el-input
               v-model="NewDoctorTeamInfo.teamDescribe"
               autocomplete="off"
@@ -73,7 +73,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addDoctorTeamFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="addDoctorTeamFormVisible = false;addDoctorTeam()">确 定</el-button>
+          <el-button type="primary" @click="addDoctorTeam('NewDoctorTeamInfo')">确 定</el-button>
         </div>
       </el-dialog>
     </el-header>
@@ -168,14 +168,30 @@ export default {
         addAddress: '',
         addStatus: ''
       },
-      SearchTeamName: ''
+      SearchTeamName: '',
+      addDoctorTeamRules: {
+        addName: [
+          { required: true, message: '请输入团队名称', trigger: 'blur' }
+        ],
+        teamDescribe: [
+          { required: true, message: '请输入团队描述', trigger: 'blur' }
+        ]
+      }
     }
   },
   methods: {
     onSearch: function() {
     },
-    addDoctorTeam: function() {
-      alert(this.$data.NewDoctorTeamInfo.addName)
+    addDoctorTeam: function(NewDoctorTeamInfo) {
+      this.$refs[NewDoctorTeamInfo].validate((valid) => {
+        if (valid) {
+          alert(this.NewDoctorTeamInfo.addName + ' ' + this.NewDoctorTeamInfo.teamDescribe)
+          this.addDoctorTeamFormVisible = false
+        } else {
+          alert('cannot add!')
+          return false
+        }
+      })
     },
     editDoctorTeamInfos: function() {
     },
