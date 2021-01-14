@@ -12,6 +12,9 @@ import App from './App'
 import store from './store'
 import router from './router'
 
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
+
 import '@/icons' // icon
 import '@/permission' // permission control
 
