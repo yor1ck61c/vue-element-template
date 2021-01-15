@@ -141,22 +141,6 @@ export default {
         NumOfPeople: '1',
         Describe: '1',
         Status: '1'
-      },
-      {
-        TeamName: '1',
-        TeamType: '1',
-        Creator: '1',
-        NumOfPeople: '1',
-        Describe: '1',
-        Status: '1'
-      },
-      {
-        TeamName: '1',
-        TeamType: '1',
-        Creator: '1',
-        NumOfPeople: '1',
-        Describe: '1',
-        Status: '1'
       }
       ],
       NewDoctorTeamInfo: {
