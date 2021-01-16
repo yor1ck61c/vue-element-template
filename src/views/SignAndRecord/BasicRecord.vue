@@ -537,20 +537,26 @@
     <el-main>
       <el-row>
         <el-col>
-          <el-table :data="BasicRecordDataTable" border>
-            <el-table-column label="操作" align="center">
+          <el-table :data="BasicRecordDataTable" border style="font-size:12px">
+            <el-table-column label="操作" align="center" width="200">
               <el-button size="mini" @click="editBasicRecordInfos()">编辑</el-button>
               <el-button size="mini" @click="deleteBasicRecordInfos()">删除</el-button>
             </el-table-column>
-            <el-table-column prop="Name" label="姓名" align="center" />
-            <el-table-column prop="ID" label="身份证号" align="center" />
-            <el-table-column prop="Gender" label="性别" align="center" />
-            <el-table-column prop="Age" label="年龄" align="center" />
-            <el-table-column prop="PhoneNum" label="联系电话" align="center" />
-            <el-table-column prop="DiseaseName" label="确诊疾病" align="center" />
-            <el-table-column prop="SignPeople" label="建档人" align="center" />
-            <el-table-column prop="SignTime" label="建档时间" align="center" />
-            <el-table-column prop="SignLocation" label="建档机构" align="center" />
+            <el-table-column label="姓名" align="center" width="100">
+              <template slot-scope="scope">
+                <router-link to="/RecordDetails">
+                  <span>{{ scope.row.Name }}</span>
+                </router-link>
+              </template>
+            </el-table-column>
+            <el-table-column prop="ID" label="身份证号" align="center" width="180" />
+            <el-table-column prop="Gender" label="性别" align="center" width="50" />
+            <el-table-column prop="Age" label="年龄" align="center" width="50" />
+            <el-table-column prop="PhoneNum" label="联系电话" align="center" width="100" />
+            <el-table-column prop="DiseaseName" label="确诊疾病" align="center" width="180" />
+            <el-table-column prop="SignPeople" label="建档人" align="center" width="100" />
+            <el-table-column prop="SignTime" label="建档时间" align="center" width="100" />
+            <el-table-column prop="SignLocation" label="建档机构" align="center" width="180" />
           </el-table>
         </el-col>
       </el-row>
@@ -559,6 +565,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'BasicRecord',
   data() {
@@ -612,10 +619,18 @@ export default {
     }
   },
   created() {
+    this.getRecordDetails()
   },
   methods: {
     onSearch: function() {},
-    saveInfo: function() {}
+    saveInfo: function() {},
+    editBasicRecordInfos: function() {},
+    deleteBasicRecordInfos: function() {},
+    getRecordDetails: function() {
+      axios.post('https://www.fastmock.site/mock/16fddfe65af12b42183595cffa0358a8/getDeviceData/getBasicRecordTable').then((res) => {
+        this.BasicRecordDataTable = res.data.BasicRecordDataTable
+      })
+    }
   }
 
 }

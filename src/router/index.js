@@ -280,6 +280,12 @@ export const constantRoutes = [
   },
 
   {
+    path: '/RecordDetails',
+    component: () => import('@/views/ExtraPage/RecordDetails'),
+    hidden: true
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [
