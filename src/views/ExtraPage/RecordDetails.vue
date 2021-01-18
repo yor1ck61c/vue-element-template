@@ -15,7 +15,7 @@
                       <div slot="header" style="text-align:center">
                         <span style="font-size:20px;font-family:Hiragino Sans GB">个人基本信息表</span>
                       </div>
-                      <div class="BasicInfoTable">
+                      <div>
                         <table border="1px" cellspacing="0px" style="border-collapse:collapse;text-align:center; line-height:1.7; font-size:14px">
                           <tr>
                             <td width="230px">联系电话</td>
@@ -135,8 +135,138 @@
                 </el-main>
               </el-container>
             </el-tab-pane>
-            <el-tab-pane label="风险评估" name="RiskAssess">选项卡2内容</el-tab-pane>
-            <el-tab-pane label="健康看板" name="HealthInfo">选项卡3内容</el-tab-pane>
+            <el-tab-pane label="风险评估" name="RiskAssess">
+              <el-card>
+                <div slot="header" style="text-align: center">
+                  <span>风险评估</span>
+                </div>
+                <el-container>
+                  <el-main>
+                    <el-row>
+                      <el-button size="medium" type="warning" disabled>正常高值</el-button>
+                    </el-row>
+                    <el-row style="margin-top: 20px;">
+                      <el-col>
+                        <div>
+                          <div>性别：男</div>
+                        </div>
+                      </el-col>
+                    </el-row>
+                    <el-row style="margin-top: 20px;">
+                      <el-col :span="7">
+                        <div style="width: 100%; margin: 5px; height: 280px;">
+                          <el-image :src="require('@/img/BloodPressure.png')" />
+                        </div>
+                      </el-col>
+                      <el-col :span="7">
+                        <div ref="RiskDistribute" style="width: 300px; margin: 5px; height: 230px;" />
+                      </el-col>
+                      <el-col :span="8">
+                        <div ref="HeartDiseaseRisk" style="width: 300px; margin: 5px; height: 230px;" />
+                      </el-col>
+                    </el-row>
+                  </el-main>
+                </el-container>
+              </el-card>
+            </el-tab-pane>
+            <el-tab-pane label="健康看板" name="HealthInfo">
+              <el-container>
+                <el-main>
+                  <el-row>
+                    <el-col>
+                      选择时间:
+                      <el-date-picker
+                        v-model="SelectHealthInfo.StartTime"
+                        type="date"
+                        placeholder="开始日期"
+                      />
+                      <el-date-picker
+                        v-model="SelectHealthInfo.EndTime"
+                        type="date"
+                        placeholder="结束日期"
+                        style="margin-left: 5px;"
+                      />
+                      <span style="float: right; margin-top: 15px;">
+                        <el-radio-group v-model="SelectHealthInfo.Type">
+                          <el-radio :label="1">日</el-radio>
+                          <el-radio :label="2">周</el-radio>
+                          <el-radio :label="3">月</el-radio>
+                          <el-radio :label="4">年</el-radio>
+                        </el-radio-group>
+                      </span>
+                    </el-col>
+                  </el-row>
+                  <el-row style="margin-top: 20px;">
+                    <el-card>
+                      <div slot="header" style="text-align: center">
+                        <span>血压</span>
+                      </div>
+                      <el-container>
+                        <el-row>
+                          <el-col :span="12">
+                            <div style="width:400px; height: 230px; border: 1px solid; margin-left: 50px;">
+                              1
+                            </div>
+                          </el-col>
+                          <el-col :span="12">
+                            <div style="margin-left: 50px;;width:400px; height: 230px;border: 1px solid">
+                              1
+                            </div>
+                          </el-col>
+                        </el-row>
+                      </el-container>
+                      <div style="margin-top: 20px;">
+                        <el-table :data="BloodPressureCountTable" border style="font-size:13px">
+                          <el-table-column prop="Date" label="日期" align="center" />
+                          <el-table-column prop="GetUp" label="早起后" align="center" />
+                          <el-table-column prop="Morning" label="上午" align="center" />
+                          <el-table-column prop="Afternoon" label="下午" align="center" />
+                          <el-table-column prop="Night" label="晚上" align="center" />
+                          <el-table-column prop="AveragePressure" label="平均压" align="center" />
+                          <el-table-column prop="PulseRate" label="脉率" align="center" />
+                          <el-table-column label="操作" align="center">
+                            详情
+                          </el-table-column>
+                        </el-table>
+                      </div>
+                    </el-card>
+                  </el-row>
+                  <el-row style="margin-top: 20px;">
+                    <el-card>
+                      <div slot="header" style="text-align: center">
+                        <span>糖尿病</span>
+                      </div>
+                      <el-container>
+                        <el-row>
+                          <el-col :span="12">
+                            <div ref="BeforeMeetBloodSugarCharts" style="width:400px; height: 230px;" />
+                          </el-col>
+                          <el-col :span="12">
+                            <div ref="AfterMeetBloodSugarCharts" style="margin-left: 50px;;width:400px; height: 230px;" />
+                          </el-col>
+                        </el-row>
+                      </el-container>
+                      <div style="margin-top: 20px;">
+                        <el-table :data="BloodSugarCountTable" border style="font-size:13px">
+                          <el-table-column prop="BeforeDawn" label="凌晨" align="center" />
+                          <el-table-column prop="BeforeBreakfast" label="早餐前" align="center" />
+                          <el-table-column prop="AfterBreakfast" label="早餐后" align="center" />
+                          <el-table-column prop="BeforeLunch" label="午餐前" align="center" />
+                          <el-table-column prop="AfterLunch" label="午餐后" align="center" />
+                          <el-table-column prop="BeforeDinner" label="晚餐前" align="center" />
+                          <el-table-column prop="AfterDinner" label="晚餐后" align="center" />
+                          <el-table-column prop="BeforeSleep" label="睡前" align="center" />
+                          <el-table-column prop="Random" label="随机" align="center" />
+                          <el-table-column label="操作" align="center">
+                            详情
+                          </el-table-column>
+                        </el-table>
+                      </div>
+                    </el-card>
+                  </el-row>
+                </el-main>
+              </el-container>
+            </el-tab-pane>
             <el-tab-pane label="体检记录" name="PERecord">
               <el-container>
                 <el-main>
@@ -159,7 +289,109 @@
                 </el-main>
               </el-container>
             </el-tab-pane>
-            <el-tab-pane label="干预计划" name="IntervenePlan">选项卡2内容</el-tab-pane>
+            <el-tab-pane label="干预计划" name="IntervenePlan">
+              <el-container>
+                <el-main>
+                  <el-row>
+                    <el-button type="primary" size="medium" style="float: right;margin-right: 75px;">新增治疗计划</el-button>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="4" style="margin-top: 20px;margin-left: 30px;">
+                      <el-select v-model="DiagnosedDisease" placeholder="确诊疾病">
+                        <el-option value="heartDisease">心脏疾病</el-option>
+                      </el-select>
+                      <el-card style="margin-top: 20px;">
+                        <div slot="header" style="text-align: center">
+                          <span style="font-size:14px">干预计划</span>
+                        </div>
+                      </el-card>
+                    </el-col>
+                    <el-col :span="18">
+                      <el-container>
+                        <el-main>
+                          <el-row>
+                            <el-col>
+                              <el-card>
+                                <div slot="header">
+                                  <span style="margin-left: 300px;">确诊信息</span>
+                                  <span style="float: right; font-size:12px;">展开完整确诊信息</span>
+                                </div>
+                                <table border="1px" cellspacing="0px" style="width: 100%;border-collapse:collapse;text-align:center; line-height:1.7; font-size:14px">
+                                  <tr>
+                                    <td>确诊疾病</td>
+                                    <td>心脏病</td>
+                                    <td>确诊日期</td>
+                                    <td>11点12分</td>
+                                  </tr>
+                                </table>
+                              </el-card>
+                            </el-col>
+                          </el-row>
+                          <el-row style="margin-top: 20px;">
+                            <el-card>
+                              <el-tabs v-model="IPActiveCard">
+                                <el-tab-pane label="计划详情" name="PlanDetail">
+                                  <div style="font-size: 13px">
+                                    计划时间：
+                                  </div>
+                                  <div>
+                                    <p>用药方案</p>
+                                    <el-table :data="DrugPlan" border>
+                                      <el-table-column prop="Prescription" label="处方" align="center" />
+                                      <el-table-column prop="PrescriptionTime" label="处方时间" align="center" />
+                                      <el-table-column prop="DrugName" label="药物名称" align="center" />
+                                      <el-table-column prop="MedicationCycle" label="用药周期" align="center" />
+                                      <el-table-column prop="DrugUse" label="药物使用次剂量" align="center" />
+                                    </el-table>
+                                  </div>
+                                  <div>
+                                    <p>运动方案</p>
+                                    <div>次/周 分钟/次</div>
+                                    <el-input
+                                      v-model="MovementPlan"
+                                      type="textarea"
+                                      :rows="2"
+                                      placeholder="请输入运动方案"
+                                    />
+                                  </div>
+                                  <div>
+                                    <p>膳食建议</p>
+                                    <el-input
+                                      v-model="FoodAdvise"
+                                      type="textarea"
+                                      :rows="2"
+                                      placeholder="请输入膳食建议"
+                                    />
+                                  </div>
+                                  <div>
+                                    <p>个人危急值</p>
+                                    <el-table :data="IndividualDangerousValue" border>
+                                      <el-table-column prop="ExamTarget" label="监测指标" align="center" />
+                                      <el-table-column prop="Target" label="目标" align="center" />
+                                      <el-table-column prop="ExamOrder" label="检测要求" align="center" />
+                                    </el-table>
+                                  </div>
+                                  <div>
+                                    <p>随访方案</p>
+                                    <el-table :data="FollowUpPlan" border>
+                                      <el-table-column prop="NextFollowUpTime" label="下次随访日期" align="center" />
+                                      <el-table-column prop="ExamItem" label="检测项目" align="center" />
+                                      <el-table-column prop="FollowUpWay" label="随访方式" align="center" />
+                                      <el-table-column prop="FollowUpDoctor" label="随访医生" align="center" />
+                                    </el-table>
+                                  </div>
+                                </el-tab-pane>
+                                <el-tab-pane label="执行情况" name="OperateStatus">1</el-tab-pane>
+                              </el-tabs>
+                            </el-card>
+                          </el-row>
+                        </el-main>
+                      </el-container>
+                    </el-col>
+                  </el-row>
+                </el-main>
+              </el-container>
+            </el-tab-pane>
             <el-tab-pane label="随访记录" name="FollowUpRecord">
               <el-container>
                 <el-main>
@@ -250,6 +482,7 @@
 
 <script>
 import ResidentInfoCard from '@/components/ResidentInfoCard.vue'
+import echarts from 'echarts'
 export default {
   name: 'RecordDetails',
   components: {
@@ -258,6 +491,7 @@ export default {
   data() {
     return {
       activeCard: 'BasicInfo',
+      IPActiveCard: 'PlanDetail',
       BasicInfoTable: {},
       SignRecord: [],
       DiseaseRecord: [],
@@ -282,10 +516,145 @@ export default {
         value: '选项5',
         label: '北京烤鸭'
       }],
-      DeviceManageInfos: []
+      DeviceManageInfos: [],
+      DrugPlan: [],
+      MovementPlan: '',
+      FoodAdvise: '',
+      IndividualDangerousValue: [],
+      FollowUpPlan: [],
+      SelectHealthInfo: { Type: 1 },
+      DiagnosedDisease: '',
+      BloodPressureCountTable: [],
+      BloodSugarCountTable: []
     }
   },
+  mounted() {
+    this.initRiskDistributeChart()
+    this.initHeartDiseaseRiskChart()
+    this.initBeforeMeetBloodSugarCharts()
+    this.initAfterMeetBloodSugarCharts()
+  },
   methods: {
+    initRiskDistributeChart: function() {
+      var rdc = echarts.init(this.$refs.RiskDistribute)
+      rdc.setOption({
+        title: {},
+        tooltip: {},
+        legend: {
+          data: ['极高', '高危', '中危', '低危']
+        },
+        calculable: true,
+        series: [
+          {
+            name: 'RiskDistribute',
+            type: 'funnel',
+            width: '50%',
+            sort: 'ascending',
+            data: [
+              { value: 25, name: '极高' },
+              { value: 50, name: '高危' },
+              { value: 75, name: '中危' },
+              { value: 100, name: '低危' }
+            ]
+          }
+        ]
+      })
+    },
+    initHeartDiseaseRiskChart: function() {
+      var hdrc = echarts.init(this.$refs.HeartDiseaseRisk)
+      hdrc.setOption({
+        title: {},
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['未干预', '干预', '同龄人最低风险']
+        },
+        xAxis: {
+          type: 'category',
+          data: ['五年', '十年', '终生']
+        },
+        yAxis: {
+          name: '风险指数'
+        },
+        series: [
+          {
+            name: '未干预',
+            type: 'line',
+            smooth: 0.5,
+            data: [6, 10, 12]
+          },
+          {
+            name: '干预',
+            type: 'line',
+            smooth: 0.5,
+            data: [4, 6, 10]
+          },
+          {
+            name: '同龄人最低风险',
+            type: 'line',
+            smooth: 0.5,
+            data: [2, 5, 8]
+          }
+        ]
+      })
+    },
+    initBeforeMeetBloodSugarCharts: function() {
+      var bmbsc = echarts.init(this.$refs.BeforeMeetBloodSugarCharts)
+      bmbsc.setOption({
+        title: {
+          text: '空腹血糖(mmol/L)'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          left: 'right',
+          data: ['血糖值']
+        },
+        xAxis: {
+          name: '日期',
+          data: ['1.18', '1.19']
+        },
+        yAxis: {
+          name: '血糖值'
+        },
+        series: {
+          name: '血糖值',
+          type: 'line',
+          data: [2.3, 5],
+          smooth: 0
+        }
+      })
+    },
+    initAfterMeetBloodSugarCharts: function() {
+      var ambsc = echarts.init(this.$refs.AfterMeetBloodSugarCharts)
+      ambsc.setOption({
+        title: {
+          text: '餐后2H血糖(mmol/L)'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          left: 'right',
+          data: ['血糖值']
+        },
+        xAxis: {
+          name: '日期',
+          data: ['1.18', '1.19']
+        },
+        yAxis: {
+          name: '血糖值'
+        },
+        series: {
+          name: '血糖值',
+          type: 'line',
+          data: [8, 9],
+          smooth: 0
+        }
+      })
+    },
     back: function() {
       if (window.history.length <= 1) {
         this.$router.push({ path: '/' })
