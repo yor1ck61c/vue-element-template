@@ -196,26 +196,67 @@
                       </span>
                     </el-col>
                   </el-row>
-                  <el-row>
+                  <el-row style="margin-top: 20px;">
                     <el-card>
                       <div slot="header" style="text-align: center">
                         <span>血压</span>
                       </div>
-                      <span style="width:300px;height:200px;">1</span>
-                      <span style="width:300px;height:200px;">1</span>
-                      <div>
-                        <el-table :data="BloodPressureCountTable" border>
-                          <el-table-column prop="Date" label="日期" align="center" />
-                          <el-table-column prop="GetUp" align="center">
-                            <div slot="label">
-                              <span>早起后<br>(8:00-11:59)</span>
+                      <el-container>
+                        <el-row>
+                          <el-col :span="12">
+                            <div style="width:400px; height: 230px; border: 1px solid; margin-left: 50px;">
+                              1
                             </div>
-                          </el-table-column>
+                          </el-col>
+                          <el-col :span="12">
+                            <div style="margin-left: 50px;;width:400px; height: 230px;border: 1px solid">
+                              1
+                            </div>
+                          </el-col>
+                        </el-row>
+                      </el-container>
+                      <div style="margin-top: 20px;">
+                        <el-table :data="BloodPressureCountTable" border style="font-size:13px">
+                          <el-table-column prop="Date" label="日期" align="center" />
+                          <el-table-column prop="GetUp" label="早起后" align="center" />
                           <el-table-column prop="Morning" label="上午" align="center" />
                           <el-table-column prop="Afternoon" label="下午" align="center" />
                           <el-table-column prop="Night" label="晚上" align="center" />
                           <el-table-column prop="AveragePressure" label="平均压" align="center" />
                           <el-table-column prop="PulseRate" label="脉率" align="center" />
+                          <el-table-column label="操作" align="center">
+                            详情
+                          </el-table-column>
+                        </el-table>
+                      </div>
+                    </el-card>
+                  </el-row>
+                  <el-row style="margin-top: 20px;">
+                    <el-card>
+                      <div slot="header" style="text-align: center">
+                        <span>糖尿病</span>
+                      </div>
+                      <el-container>
+                        <el-row>
+                          <el-col :span="12">
+                            <div ref="BeforeMeetBloodSugarCharts" style="width:400px; height: 230px;" />
+                          </el-col>
+                          <el-col :span="12">
+                            <div ref="AfterMeetBloodSugarCharts" style="margin-left: 50px;;width:400px; height: 230px;" />
+                          </el-col>
+                        </el-row>
+                      </el-container>
+                      <div style="margin-top: 20px;">
+                        <el-table :data="BloodSugarCountTable" border style="font-size:13px">
+                          <el-table-column prop="BeforeDawn" label="凌晨" align="center" />
+                          <el-table-column prop="BeforeBreakfast" label="早餐前" align="center" />
+                          <el-table-column prop="AfterBreakfast" label="早餐后" align="center" />
+                          <el-table-column prop="BeforeLunch" label="午餐前" align="center" />
+                          <el-table-column prop="AfterLunch" label="午餐后" align="center" />
+                          <el-table-column prop="BeforeDinner" label="晚餐前" align="center" />
+                          <el-table-column prop="AfterDinner" label="晚餐后" align="center" />
+                          <el-table-column prop="BeforeSleep" label="睡前" align="center" />
+                          <el-table-column prop="Random" label="随机" align="center" />
                           <el-table-column label="操作" align="center">
                             详情
                           </el-table-column>
@@ -482,18 +523,22 @@ export default {
       IndividualDangerousValue: [],
       FollowUpPlan: [],
       SelectHealthInfo: { Type: 1 },
-      DiagnosedDisease: ''
+      DiagnosedDisease: '',
+      BloodPressureCountTable: [],
+      BloodSugarCountTable: []
     }
   },
   mounted() {
     this.initRiskDistributeChart()
     this.initHeartDiseaseRiskChart()
+    this.initBeforeMeetBloodSugarCharts()
+    this.initAfterMeetBloodSugarCharts()
   },
   methods: {
     initRiskDistributeChart: function() {
       var rdc = echarts.init(this.$refs.RiskDistribute)
       rdc.setOption({
-        title: { },
+        title: {},
         tooltip: {},
         legend: {
           data: ['极高', '高危', '中危', '低危']
@@ -519,7 +564,9 @@ export default {
       var hdrc = echarts.init(this.$refs.HeartDiseaseRisk)
       hdrc.setOption({
         title: {},
-        tooltip: {},
+        tooltip: {
+          trigger: 'axis'
+        },
         legend: {
           data: ['未干预', '干预', '同龄人最低风险']
         },
@@ -550,6 +597,62 @@ export default {
             data: [2, 5, 8]
           }
         ]
+      })
+    },
+    initBeforeMeetBloodSugarCharts: function() {
+      var bmbsc = echarts.init(this.$refs.BeforeMeetBloodSugarCharts)
+      bmbsc.setOption({
+        title: {
+          text: '空腹血糖(mmol/L)'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          left: 'right',
+          data: ['血糖值']
+        },
+        xAxis: {
+          name: '日期',
+          data: ['1.18', '1.19']
+        },
+        yAxis: {
+          name: '血糖值'
+        },
+        series: {
+          name: '血糖值',
+          type: 'line',
+          data: [2.3, 5],
+          smooth: 0
+        }
+      })
+    },
+    initAfterMeetBloodSugarCharts: function() {
+      var ambsc = echarts.init(this.$refs.AfterMeetBloodSugarCharts)
+      ambsc.setOption({
+        title: {
+          text: '餐后2H血糖(mmol/L)'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          left: 'right',
+          data: ['血糖值']
+        },
+        xAxis: {
+          name: '日期',
+          data: ['1.18', '1.19']
+        },
+        yAxis: {
+          name: '血糖值'
+        },
+        series: {
+          name: '血糖值',
+          type: 'line',
+          data: [8, 9],
+          smooth: 0
+        }
       })
     },
     back: function() {

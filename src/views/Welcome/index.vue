@@ -104,6 +104,7 @@ export default {
           {
             name: ['人数'],
             type: 'bar',
+            barWidth: 30,
             data: [
               { value: HeartDiseaseNum, name: '心脏疾病' },
               { value: DiabetesNum, name: '糖尿病' },
