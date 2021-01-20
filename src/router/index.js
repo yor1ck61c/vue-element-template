@@ -294,6 +294,13 @@ export const constantRoutes = [
   },
 
   {
+    path: '/CheckReport',
+    name: 'CheckReport',
+    component: () => import('@/views/ExtraPage/CheckReport'),
+    hidden: true
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [
