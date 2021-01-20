@@ -11,7 +11,7 @@
       </el-row>
       <el-row>
         <div>
-          <div style="text-align: left;margin-top: 20px; font-size:14px; line-height:1.7">
+          <div style="text-align: left;margin-top: 20px; font-size:13px; line-height:1.7">
             身份证号：{{ ResidentInfo.ID }}<br>
             姓名：{{ ResidentInfo.Name }}<br>
             性别：{{ ResidentInfo.Gender }}<br>
@@ -36,9 +36,15 @@ export default {
   name: 'ResidentInfoCard',
   data() {
     return {
-      'ResidentInfo': {},
+      'ResidentInfo': {
+        ID: '2'
+      },
       'github': 'https://github.com/yor1ck61c'
     }
+  },
+  mounted() {
+    this.ResidentInfo.ID = this.$route.params.ID
+    alert(this.$route.params.ID)
   }
 }
 </script>
