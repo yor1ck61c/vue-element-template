@@ -287,6 +287,13 @@ export const constantRoutes = [
   },
 
   {
+    path: '/HandleAlert',
+    name: 'HandleAlert',
+    component: () => import('@/views/ExtraPage/HandleAlert'),
+    hidden: true
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [
