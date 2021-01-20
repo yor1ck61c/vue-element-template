@@ -44,7 +44,6 @@ export default {
   },
   mounted() {
     this.ResidentInfo.ID = this.$route.params.ID
-    alert(this.$route.params.ID)
   }
 }
 </script>
