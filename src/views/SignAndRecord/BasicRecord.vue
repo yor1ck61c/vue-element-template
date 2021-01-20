@@ -544,7 +544,14 @@
             </el-table-column>
             <el-table-column label="姓名" align="center" width="100">
               <template slot-scope="scope">
-                <router-link to="/RecordDetails">
+                <router-link
+                  :to="{
+                    name: 'RecordDetails',
+                    params: {
+                      'ID': scope.row.ID
+                    }
+                  }"
+                >
                   <span>{{ scope.row.Name }}</span>
                 </router-link>
               </template>

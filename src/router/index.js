@@ -281,6 +281,7 @@ export const constantRoutes = [
 
   {
     path: '/RecordDetails',
+    name: 'RecordDetails',
     component: () => import('@/views/ExtraPage/RecordDetails'),
     hidden: true
   },
