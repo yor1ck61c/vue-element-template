@@ -16,7 +16,7 @@
               <div>
                 <el-table :data="NeedCheckHealthReportTable" border style="margin-top: 20px;">
                   <el-table-column label="操作" align="center">
-                    <el-button size="mini" type="primary">审核报告</el-button>
+                    <el-button size="mini" type="primary" @click="CheckReport()">审核报告</el-button>
                   </el-table-column>
                   <el-table-column prop="Name" label="姓名" align="center" />
                   <el-table-column prop="Gender" label="性别" align="center" />
@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HealthReport',
   data() {
@@ -65,6 +66,25 @@ export default {
       NeedCheckHealthReportTable: [],
       AlreadyCheckReportSearch: {},
       AlreadyCheckHealthReportTable: []
+    }
+  },
+  created() {
+    this.getNeedCheckHealthReportTableInfo()
+  },
+  methods: {
+    getNeedCheckHealthReportTableInfo: function() {
+      axios.post('https://www.fastmock.site/mock/16fddfe65af12b42183595cffa0358a8/getDeviceData/getUnCheck').then((res) => {
+        this.NeedCheckHealthReportTable = res.data.NeedCheckHealthReportTable
+      })
+    },
+    CheckReport: function() {
+      this.$router.push({
+        path: '/CheckReport',
+        name: 'CheckReport',
+        params: {
+          'Name': this.NeedCheckHealthReportTable.Name
+        }
+      })
     }
   }
 }
