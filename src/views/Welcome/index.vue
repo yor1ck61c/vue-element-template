@@ -52,6 +52,49 @@
         </el-col>
       </el-row>
     </el-main>
+    <el-dialog title="快捷服务导航" :visible.sync="QuickServeNav">
+      <el-container>
+        <el-main>
+          <el-row>
+            <el-col>
+              <div>身份证信息</div>
+              <el-divider />
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="8">
+              <el-image style="width: 100px; height: 100px;" :src="url" />
+            </el-col>
+            <el-col :span="14" style="font-size: 13px">
+              <div>
+                <span style="display: inline-block; width: 180px;">证件类型:身份证</span>
+                <span>证件号码:{{ UnSignQuickServeNavInfo.ID }}</span>
+                <el-divider />
+              </div>
+              <div>
+                <span style="display: inline-block; width: 180px;">姓名:{{ UnSignQuickServeNavInfo.Name }}</span>
+                <span>性别：{{ UnSignQuickServeNavInfo.Gender }}</span>
+                <el-divider />
+              </div>
+              <div>
+                <span style="display: inline-block; width: 180px;">年龄: {{ UnSignQuickServeNavInfo.Age }}</span>
+                <span>住址: {{ UnSignQuickServeNavInfo.Address }}</span>
+                <el-divider />
+              </div>
+            </el-col>
+          </el-row>
+          <el-divider />
+          <el-row style="line-height:1.7">
+            <div style="text-align: center">档案状态：未建档</div>
+            <div style="margin-top: 20px;">请点击相应按钮进入该项服务：</div>
+            <div>档案管理</div>
+            <el-divider />
+            <el-button type="primary" size="medium">居民建档</el-button>
+            <el-divider />
+          </el-row>
+        </el-main>
+      </el-container>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -66,7 +109,16 @@ export default {
       BloodSugar: '1',
       BloodPressure: '2',
       Electrocardiogram: '3',
-      RealTimeMonitorData: []
+      RealTimeMonitorData: [],
+      QuickServeNav: true,
+      url: 'test',
+      UnSignQuickServeNavInfo: {
+        ID: '',
+        Name: '',
+        Gender: '',
+        Age: '',
+        Address: ''
+      }
     }
   },
   mounted() {
