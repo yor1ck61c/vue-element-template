@@ -283,13 +283,15 @@ export const constantRoutes = [
     path: '/RecordDetails',
     name: 'RecordDetails',
     component: () => import('@/views/ExtraPage/RecordDetails'),
+    meta: { title: '档案详情' },
     hidden: true
   },
 
   {
-    path: '/HandleAlert',
-    name: 'HandleAlert',
-    component: () => import('@/views/ExtraPage/HandleAlert'),
+    path: '/ManageAlert',
+    name: 'ManageAlert',
+    component: () => import('@/views/ExtraPage/ManageAlert'),
+    meta: { title: '预警处置' },
     hidden: true
   },
 
