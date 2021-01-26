@@ -123,9 +123,9 @@
 </template>
 
 <script>
-// import { getServePackageInfos } from '@/api/SystemConfig/SignServePackage'
-// import { Message } from 'element-ui'
-import Axios from 'axios'
+import { getServePackageInfos } from '@/api/SystemConfig/SignServePackage'
+import { searchPackageInfo } from '@/api/SystemConfig/SignServePackage'
+import { Message } from 'element-ui'
 export default {
   name: 'SignServePackage',
   data() {
@@ -162,21 +162,17 @@ export default {
     }
   },
   created() {
-    // this.getServePackageInfos()
-    var that = this
-    Axios.post(
-      'https://www.fastmock.site/mock/16fddfe65af12b42183595cffa0358a8/getDeviceData/device_info'
-    ).then((res) => {
-      that.ServePackageInfos = res.data.ServePackageInfos
-    })
+    this.getServePackageTableInfos()
   },
   methods: {
-    /* getServePackageInfos: function() {
+    getServePackageTableInfos: function() {
       getServePackageInfos().then((res) => {
         this.ServePackageInfos = res.data.ServePackageInfos
-        Message.success(res.data.ServePackageInfos)
+        Message.success({
+          message: 'success'
+        })
       })
-    },*/
+    },
     addServePackage: function(NewServePackageInfo) {
       this.$refs[NewServePackageInfo].validate((valid) => {
         if (valid) {
@@ -189,6 +185,11 @@ export default {
       })
     },
     onSearch: function() {
+      searchPackageInfo(this.SearchInfo).then((res) => {
+        Message.success({
+          message: 'success!'
+        })
+      })
     },
     editServePackageInfos: function() {
     },
