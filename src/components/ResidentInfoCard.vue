@@ -39,7 +39,6 @@ export default {
       'ResidentInfo': {
         ID: '2'
       },
-      'github': 'https://github.com/yor1ck61c'
     }
   },
   mounted() {

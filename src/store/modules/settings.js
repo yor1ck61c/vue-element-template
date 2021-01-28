@@ -1,9 +1,11 @@
 import defaultSettings from '@/settings'
+import tagsView from './tagsView'
 
 const { showSettings, fixedHeader, sidebarLogo } = defaultSettings
 
 const state = {
   showSettings: showSettings,
+  tagsView: tagsView,
   fixedHeader: fixedHeader,
   sidebarLogo: sidebarLogo
 }
