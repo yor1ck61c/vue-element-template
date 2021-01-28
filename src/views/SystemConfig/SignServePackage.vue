@@ -5,13 +5,13 @@
         <el-form :inline="true" :model="SearchInfo" class="demo-form-inline">
           <el-form-item>
             <el-input
-              v-model="SearchInfo.PackageName"
+              v-model="SearchInfo.Name"
               placeholder="服务包名称"
             />
           </el-form-item>
           <el-form-item>
             <el-select
-              v-model="SearchInfo.PackageLevel"
+              v-model="SearchInfo.Level"
               placeholder="服务包等级"
             >
               <el-option label="一级" value="一级" />
@@ -19,7 +19,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSearch">搜索</el-button>
+            <el-button type="primary" @click="onSearch()">搜索</el-button>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="addServePackageFormVisible = true">添加服务包</el-button>
@@ -125,6 +125,7 @@
 <script>
 import { getServePackageInfos } from '@/api/SystemConfig/SignServePackage'
 import { searchPackageInfo } from '@/api/SystemConfig/SignServePackage'
+import { addServePackage } from '@/api/SystemConfig/SignServePackage'
 import { Message } from 'element-ui'
 export default {
   name: 'SignServePackage',
@@ -132,8 +133,8 @@ export default {
     return {
       ServePackageInfos: [],
       SearchInfo: {
-        PackageName: '',
-        PackageLevel: ''
+        Name: '',
+        Level: ''
       },
       addServePackageFormVisible: false,
       NewServePackageInfo: {
@@ -177,6 +178,9 @@ export default {
       this.$refs[NewServePackageInfo].validate((valid) => {
         if (valid) {
           alert(this.NewServePackageInfo.addName + ' ' + NewServePackageInfo.addNum + ' ' + NewServePackageInfo.addFitPeople)
+          addServePackage(NewServePackageInfo).then((res) => {
+            this.ServePackageInfos = res.data.ServePackageInfos
+          })
           this.addServePackageFormVisible = false
         } else {
           alert('cannot add!')
