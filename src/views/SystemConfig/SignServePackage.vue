@@ -182,8 +182,13 @@ export default {
             this.ServePackageInfos = res.data.ServePackageInfos
           })
           this.addServePackageFormVisible = false
+          Message.success({
+            message: '添加成功！'
+          })
         } else {
-          alert('cannot add!')
+          Message.error({
+            message: '添加失败！'
+          })
           return false
         }
       })
