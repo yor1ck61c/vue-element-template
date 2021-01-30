@@ -14,7 +14,7 @@
                 <el-button type="primary" style="margin-left: 20px;">批量审核报告</el-button>
               </div>
               <div>
-                <el-table :data="NeedCheckHealthReportTable" border style="margin-top: 20px;">
+                <el-table :data="NeedCheckHealthReportTable" border style="margin-top: 20px; font-size: 12px">
                   <el-table-column label="操作" align="center">
                     <el-button size="mini" type="primary" @click="CheckReport()">审核报告</el-button>
                   </el-table-column>

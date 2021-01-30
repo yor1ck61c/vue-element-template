@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <el-aside style="width: 300px">
-      <el-button type="primary" style="margin-left: 20px; margin-top: 20px">返回</el-button>
+      <el-button type="primary" size="medium" style="margin-left: 20px; margin-top: 20px" @click="back()">返回</el-button>
     </el-aside>
     <el-main>
       <el-row v-model="ReportInfos" style="text-align: center">
@@ -22,64 +22,73 @@
         </div>
       </el-row>
       <el-row v-model="BasicInfos" style="font-size: 13px">
-        <div style="margin-top: 10px; margin-bottom: 5px; color: #1E90FF; font-size: 16px">
+        <div style="margin-top: 10px; margin-bottom: 5px; color: #1E90FF">
           <span>基本信息</span>
         </div>
-        <div style="border: solid 1px #DCDFE6; line-height: 30px; color: #909399">
-          <div style="margin-bottom: 20px;">
-            <div style="width: 60px; height:100px; float: left">
-              <div style="border: solid 1px #DCDFE6; width:60px; height:98px; margin-left:5px; margin-top:5px"><!--图片--></div>
-            </div>
-            <div style="float: left; width: 800px; height: 100px">
-              <div style="height: 30px; margin-top: 5px; margin-left: 10px">
-                <span style="display: block; width: 260px; float: left">身份证号：{{ BasicInfos.Idcard }}</span>
-                <span style="display: block; width: 260px; float: left">姓名：{{ BasicInfos.Name }}</span>
-                <span style="display: block; width: 260px; float: left">出生日期：{{ BasicInfos.Birthday }}</span>
+        <el-container style="color: #909399; border: 1px solid #DCDFE6; line-height: 30px">
+          <el-row>
+            <el-col :span="2" style="">
+              <div style="border: 1px solid #DCDFE6; width: 60px; height: 100px; margin-left: 5px; margin-top: 5px">1</div>
+            </el-col>
+            <el-col :span="22" style="margin-top: 5px">
+              <div>
+                <span style="display: block; float: left; width: 250px">身份证号：{{ BasicInfos.Idcard }}</span>
+                <span style="display: block; float: left; width: 250px">姓名：{{ BasicInfos.Name }}</span>
+                <span style="display: block; float: left; width: 300px">出生日期：{{ BasicInfos.Birthday }}</span>
               </div>
-              <div style="border: 1px solid #DCDFE6; margin-left: 10px"><!--横线--></div>
-              <div style="height: 30px; margin-left: 10px">
-                <span style="display: block; width: 260px; float: left">年龄：{{ BasicInfos.Age }}</span>
-                <span style="display: block; width: 260px; float: left">性别：{{ BasicInfos.Sex }}</span>
-                <span style="display: block; width: 260px; float: left">民族：{{ BasicInfos.Nation }}</span>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #b3b3b3">
+              <div>
+                <span style="display: block; float: left; width: 250px">年龄：{{ BasicInfos.Age }}</span>
+                <span style="display: block; float: left; width: 250px">性别：{{ BasicInfos.Sex }}</span>
+                <span style="display: block; float: left; width: 300px">民族：{{ BasicInfos.Nation }}</span>
               </div>
-              <div style="border: 1px solid #DCDFE6; margin-left: 10px"><!--横线--></div>
-              <div style="height: 30px; margin-left: 10px">
-                <span style="display: block; width: 260px; float: left">本人电话：{{ BasicInfos.Tel }}</span>
-                <span style="display: block; width: 260px; float: left">紧急联系人：{{ BasicInfos.Contact }}</span>
-                <span style="display: block; width: 260px; float: left">紧急人电话：{{ BasicInfos.ContactTel }}</span>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #d3d3d3">
+              <div>
+                <span style="display: block; float: left; width: 250px">本人电话：{{ BasicInfos.Tel }}</span>
+                <span style="display: block; float: left; width: 250px">紧急联系人：{{ BasicInfos.Contact }}</span>
+                <span style="display: block; float: left; width: 300px">紧急人电话：{{ BasicInfos.ContactTel }}</span>
               </div>
-              <div style="border: 1px solid #DCDFE6; margin-left: 10px"><!--横线--></div>
-            </div>
-          </div>
-          <div style="clear: both;">
-            <div style="margin-left: 10px;">户籍地址：{{ BasicInfos.PermanentAddress }}</div>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">现地址：{{ BasicInfos.Address }}</div>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">
-              <span style="display: block; width: 245px; float: left">血型：{{ BasicInfos.BloodType }}</span>
-              <span style="display: block; width: 100px; float: left;">RH：{{ BasicInfos.RH }}</span>
-            </div>
-            <br>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">婚姻状况：{{ BasicInfos.MaritalStatus }}</div>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">疾病史：{{ BasicInfos.IllHistory }}</div>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">
-              <span style="display: block; float: left">家族史：</span>
-              <span style="display: block; width: 180px; float: left;">父亲：{{ BasicInfos.Dad }}</span>
-              <span style="display: block; width: 180px; float: left;">母亲：{{ BasicInfos.Mom }}</span>
-              <span style="display: block; width: 240px; float: left;">兄弟姐妹：{{ BasicInfos.BroSis }}</span>
-              <span style="display: block; width: 200px; float: left">子女：{{ BasicInfos.Son }}</span>
-            </div>
-            <br>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">遗传病史：{{ BasicInfos.GeneticHistory }}</div>
-            <hr style="margin-left: 10px; margin-right: 16px; background-color: #dcdfe6; height: 1px; border: none">
-            <div style="margin-left: 10px">过敏原：{{ BasicInfos.Allergen }}</div>
-          </div>
-        </div>
+            </el-col>
+            <el-col :span="24" style="margin-bottom: 10px">
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #b3b3b3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>户籍地址：{{ BasicInfos.PermanentAddress }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #d3d3d3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>现住址：{{ BasicInfos.Address }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #b3b3b3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>血型：{{ BasicInfos.BloodType }}</span>
+                <span>RH：{{ BasicInfos.RH }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #d3d3d3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>婚姻状况：{{ BasicInfos.MaritalStatus }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #b3b3b3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>疾病史：{{ BasicInfos.IllHistory }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #d3d3d3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>家族史：父亲：{{ BasicInfos.Dad }}</span>
+                <span>母亲：{{ BasicInfos.Mom }}</span>
+                <span>兄弟姐妹：{{ BasicInfos.BroSis }}</span>
+                <span>子女：{{ BasicInfos.Son }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #b3b3b3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>遗传病史：{{ BasicInfos.GeneticHistory }}</span>
+              </div>
+              <hr style="border: none; clear: both; margin-right: 10px; height: 1px; background-color: #d3d3d3; margin-left: 10px;">
+              <div style="margin-left: 10px">
+                <span>过敏原：{{ BasicInfos.Allergen }}</span>
+              </div>
+            </el-col>
+          </el-row>
+        </el-container>
       </el-row>
       <el-row v-model="DiagnosisInfos">
         <div style="margin-top: 10px; margin-bottom: 5px; color: #1E90FF">
@@ -414,6 +423,14 @@ export default {
           }
         ]
       })
+    },
+    back: function() {
+      if (window.history.length <= 1) {
+        this.$router.push({ path: '/' })
+        return false
+      } else {
+        this.$router.go(-1)
+      }
     }
   }
 }
