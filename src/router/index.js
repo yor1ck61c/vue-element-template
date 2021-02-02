@@ -303,6 +303,13 @@ export const constantRoutes = [
   },
 
   {
+    path: '/testRequest',
+    name: 'testRequest',
+    component: () => import('@/views/Test/test'),
+    hidden: true
+  },
+
+  {
     path: 'external-link',
     component: Layout,
     children: [
