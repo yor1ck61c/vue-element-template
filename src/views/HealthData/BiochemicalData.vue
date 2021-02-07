@@ -36,7 +36,7 @@
     <el-main>
       <el-row>
         <el-col>
-          <el-table :data="BiochemicalDataTable" border>
+          <el-table :data="BiochemicalDataTable" border style="font-size: 12px">
             <el-table-column prop="ExamTime" label="检查时间" align="center" />
             <el-table-column prop="Name" label="姓名" align="center" />
             <el-table-column prop="ID" label="身份证号" align="center" />
