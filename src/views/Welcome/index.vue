@@ -2,16 +2,16 @@
   <el-container>
     <el-header style="margin-top: 20px;">
       <el-row>
-        <el-col :span="6" style="text-align:center">
+        <el-col :span="6" style="text-align: center; color: #909399">
           <div>档案检测：{{ ExamPeopleSum }}人</div>
         </el-col>
-        <el-col :span="4" style="margin-left: 200px;">
+        <el-col :span="4" style="margin-left: 200px; color: #909399">
           <div>今日检测：血糖{{ BloodSugar }}人</div>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="2" style="color: #909399">
           <div>血压{{ BloodPressure }}人</div>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="2" style="color: #909399">
           <div>心电图{{ Electrocardiogram }}人</div>
         </el-col>
       </el-row>
@@ -21,24 +21,24 @@
       <el-row>
         <el-col :span="8" style="border: #6cadc8 solid 1px">
           <el-card>
-            <div slot="header" style="text-align:center">疾病分布</div>
+            <div slot="header" style="text-align: center; color: #909399">疾病分布</div>
             <div ref="DiseaseDistribute" style="width: 100%; height: 280px; margin: 5px;" />
           </el-card>
           <el-card>
-            <div slot="header" style="text-align:center">年龄分布</div>
+            <div slot="header" style="text-align: center; color: #909399">年龄分布</div>
             <div ref="AgeDistribute" style="width: 100%; height: 280px; margin: 5px;" />
           </el-card>
           <el-card>
-            <div slot="header" style="text-align:center">性别分布</div>
+            <div slot="header" style="text-align:center; color: #909399">性别分布</div>
             <div ref="GenderDistribute" style="width: 100%; height: 280px; margin: 5px;" />
           </el-card>
         </el-col>
         <el-col :span="15" style="border: #6cadc8 solid 1px; margin-left: 10px;">
           <div style="margin: 5px; width: 100%">
-            <span style="margin-left: 5px;"><i class="el-icon-user-solid" /> 七天内实测数据</span>
-            <a href="#" style="float: right; margin-right: 20px; font-size: 14px;">更多</a>
+            <span style="margin-left: 5px; color: #909399"><i class="el-icon-user-solid" /> 七天内实测数据</span>
+            <a href="#" style="float: right; margin-right: 20px; font-size: 14px; color: #909399">更多</a>
           </div>
-          <el-table :data="RealTimeMonitorData" border style="margin-top: 10px;">
+          <el-table :data="RealTimeMonitorData" border style="margin-top: 10px; font-size: 12px">
             <el-table-column prop="Name" label="姓名" align="center" />
             <el-table-column prop="Gender" label="性别" align="center" />
             <el-table-column prop="Age" label="年龄" align="center" />
@@ -52,6 +52,49 @@
         </el-col>
       </el-row>
     </el-main>
+    <el-dialog title="快捷服务导航" :visible.sync="QuickServeNav">
+      <el-container>
+        <el-main>
+          <el-row>
+            <el-col>
+              <div>身份证信息</div>
+              <el-divider />
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-col :span="8">
+              <el-image style="width: 100px; height: 100px;" :src="url" />
+            </el-col>
+            <el-col :span="14" style="font-size: 13px">
+              <div>
+                <span style="display: inline-block; width: 180px;">证件类型:身份证</span>
+                <span>证件号码:{{ UnSignQuickServeNavInfo.ID }}</span>
+                <el-divider />
+              </div>
+              <div>
+                <span style="display: inline-block; width: 180px;">姓名:{{ UnSignQuickServeNavInfo.Name }}</span>
+                <span>性别：{{ UnSignQuickServeNavInfo.Gender }}</span>
+                <el-divider />
+              </div>
+              <div>
+                <span style="display: inline-block; width: 180px;">年龄: {{ UnSignQuickServeNavInfo.Age }}</span>
+                <span>住址: {{ UnSignQuickServeNavInfo.Address }}</span>
+                <el-divider />
+              </div>
+            </el-col>
+          </el-row>
+          <el-divider />
+          <el-row style="line-height:1.7">
+            <div style="text-align: center">档案状态：未建档</div>
+            <div style="margin-top: 20px;">请点击相应按钮进入该项服务：</div>
+            <div>档案管理</div>
+            <el-divider />
+            <el-button type="primary" size="medium">居民建档</el-button>
+            <el-divider />
+          </el-row>
+        </el-main>
+      </el-container>
+    </el-dialog>
   </el-container>
 </template>
 
@@ -66,7 +109,16 @@ export default {
       BloodSugar: '1',
       BloodPressure: '2',
       Electrocardiogram: '3',
-      RealTimeMonitorData: []
+      RealTimeMonitorData: [],
+      QuickServeNav: true,
+      url: 'test',
+      UnSignQuickServeNavInfo: {
+        ID: '',
+        Name: '',
+        Gender: '',
+        Age: '',
+        Address: ''
+      }
     }
   },
   mounted() {
