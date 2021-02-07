@@ -5,13 +5,13 @@
         <el-form :inline="true" :model="SearchInfo" class="demo-form-inline">
           <el-form-item>
             <el-input
-              v-model="SearchInfo.PackageName"
+              v-model="SearchInfo.Name"
               placeholder="服务包名称"
             />
           </el-form-item>
           <el-form-item>
             <el-select
-              v-model="SearchInfo.PackageLevel"
+              v-model="SearchInfo.Level"
               placeholder="服务包等级"
             >
               <el-option label="一级" value="一级" />
@@ -19,7 +19,7 @@
             </el-select>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSearch">搜索</el-button>
+            <el-button type="primary" @click="onSearch()">搜索</el-button>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="addServePackageFormVisible = true">添加服务包</el-button>
@@ -28,6 +28,7 @@
         <el-dialog
           title="添加服务包"
           :visible.sync="addServePackageFormVisible"
+          style="color: #909399"
         >
           <el-form ref="NewServePackageInfo" :model="NewServePackageInfo" :rules="addServePackageRule">
             <el-form-item label="服务包名称" prop="addName" :label-width="formLabelWidth">
@@ -104,7 +105,7 @@
     <el-main>
       <el-row>
         <el-col>
-          <el-table :data="ServePackageInfos" border>
+          <el-table :data="ServePackageInfos" border style="font-size: 12px">
             <el-table-column label="操作" align="center">
               <el-button size="mini" @click="editServePackageInfos()">编辑</el-button>
               <el-button size="mini" @click="deleteServePackageInfos()">删除</el-button>
@@ -123,17 +124,18 @@
 </template>
 
 <script>
-// import { getServePackageInfos } from '@/api/SystemConfig/SignServePackage'
-// import { Message } from 'element-ui'
-import Axios from 'axios'
+import { getServePackageInfos } from '@/api/SystemConfig/SignServePackage'
+import { searchPackageInfo } from '@/api/SystemConfig/SignServePackage'
+import { addServePackage } from '@/api/SystemConfig/SignServePackage'
+import { Message } from 'element-ui'
 export default {
   name: 'SignServePackage',
   data() {
     return {
       ServePackageInfos: [],
       SearchInfo: {
-        PackageName: '',
-        PackageLevel: ''
+        Name: '',
+        Level: ''
       },
       addServePackageFormVisible: false,
       NewServePackageInfo: {
@@ -162,33 +164,42 @@ export default {
     }
   },
   created() {
-    // this.getServePackageInfos()
-    var that = this
-    Axios.post(
-      'https://www.fastmock.site/mock/16fddfe65af12b42183595cffa0358a8/getDeviceData/device_info'
-    ).then((res) => {
-      that.ServePackageInfos = res.data.ServePackageInfos
-    })
+    this.getServePackageTableInfos()
   },
   methods: {
-    /* getServePackageInfos: function() {
+    getServePackageTableInfos: function() {
       getServePackageInfos().then((res) => {
         this.ServePackageInfos = res.data.ServePackageInfos
-        Message.success(res.data.ServePackageInfos)
+        Message.success({
+          message: 'success'
+        })
       })
-    },*/
+    },
     addServePackage: function(NewServePackageInfo) {
       this.$refs[NewServePackageInfo].validate((valid) => {
         if (valid) {
           alert(this.NewServePackageInfo.addName + ' ' + NewServePackageInfo.addNum + ' ' + NewServePackageInfo.addFitPeople)
+          addServePackage(NewServePackageInfo).then((res) => {
+            this.ServePackageInfos = res.data.ServePackageInfos
+          })
           this.addServePackageFormVisible = false
+          Message.success({
+            message: '添加成功！'
+          })
         } else {
-          alert('cannot add!')
+          Message.error({
+            message: '添加失败！'
+          })
           return false
         }
       })
     },
     onSearch: function() {
+      searchPackageInfo(this.SearchInfo).then((res) => {
+        Message.success({
+          message: 'success!'
+        })
+      })
     },
     editServePackageInfos: function() {
     },
