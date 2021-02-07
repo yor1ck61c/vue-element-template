@@ -75,7 +75,7 @@
                   </tr>
                 </tbody>
               </table>
-              <table width="100%" border="1">
+              <table width="100%" border="1" cellspacing="0">
                 <tbody>
                   <tr>
                     <td width="10%">&nbsp;*出生日期</td>
