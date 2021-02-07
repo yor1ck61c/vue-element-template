@@ -48,7 +48,7 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/welcome',
     children: [{
-      path: 'welcome',
+      path: '/welcome',
       name: 'HomePage',
       component: () => import('@/views/Welcome/index'),
       meta: { title: '首页', icon: 'dashboard' }
@@ -63,19 +63,19 @@ export const constantRoutes = [
     meta: { title: '快捷菜单', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'MonitorAlert',
+        path: '/MonitorAlert',
         name: 'MonitorAlert',
         component: () => import('@/views/QuickMenu/MonitorAlert'),
         meta: { title: '预警监控', icon: 'table' }
       },
       {
-        path: 'WorkReminder',
+        path: '/WorkReminder',
         name: 'WorkReminder',
         component: () => import('@/views/QuickMenu/WorkReminder'),
         meta: { title: '工作提醒', icon: 'table' }
       },
       {
-        path: 'dialog',
+        path: '/dialog',
         name: 'dialog',
         component: () => import('@/views/QuickMenu/dialog'),
         meta: { title: '医患交流', icon: 'tree' }
@@ -91,13 +91,13 @@ export const constantRoutes = [
     meta: { title: '健康干预', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'HandleAlert',
+        path: '/HandleAlert',
         name: 'HandleAlert',
         component: () => import('@/views/HealthInterfere/HandleAlert'),
         meta: { title: '预警处置', icon: 'table' }
       },
       {
-        path: 'HealthReport',
+        path: '/HealthReport',
         name: 'HealthReport',
         component: () => import('@/views/HealthInterfere/HealthReport'),
         meta: { title: '健康报告', icon: 'table' }
@@ -113,13 +113,13 @@ export const constantRoutes = [
     meta: { title: '签约建档', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'BasicRecord',
+        path: '/BasicRecord',
         name: 'BasicRecord',
         component: () => import('@/views/SignAndRecord/BasicRecord'),
         meta: { title: '基本档案', icon: 'table' }
       },
       {
-        path: 'ManageSign',
+        path: '/ManageSign',
         name: 'ManageSign',
         component: () => import('@/views/SignAndRecord/ManageSign'),
         meta: { title: '签约管理', icon: 'table' }
@@ -135,13 +135,13 @@ export const constantRoutes = [
     meta: { title: '内分泌科', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'test1',
+        path: '/test1',
         name: 'test1',
         component: () => import('@/views/table'),
         meta: { title: 'nodata', icon: 'table' }
       },
       {
-        path: 'test2',
+        path: '/test2',
         name: 'test2',
         component: () => import('@/views/table'),
         meta: { title: 'nodata', icon: 'table' }
@@ -157,14 +157,14 @@ export const constantRoutes = [
     meta: { title: '体检科', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'test1',
-        name: 'test1',
+        path: '/test3',
+        name: 'test3',
         component: () => import('@/views/table'),
         meta: { title: 'nodata', icon: 'table' }
       },
       {
-        path: 'test2',
-        name: 'test2',
+        path: '/test4',
+        name: 'test4',
         component: () => import('@/views/table'),
         meta: { title: 'nodata', icon: 'table' }
       }
@@ -179,37 +179,37 @@ export const constantRoutes = [
     meta: { title: '健康数据', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'BodyData',
+        path: '/BodyData',
         name: 'BodyData',
         component: () => import('@/views/HealthData/BodyData'),
         meta: { title: '体征数据', icon: 'table' }
       },
       {
-        path: 'BiochemicalData',
+        path: '/BiochemicalData',
         name: 'BiochemicalData',
         component: () => import('@/views/HealthData/BiochemicalData'),
         meta: { title: '生化数据', icon: 'table' }
       },
       {
-        path: 'ElectrophysiologicalData',
+        path: '/ElectrophysiologicalData',
         name: 'ElectrophysiologicalData',
         component: () => import('@/views/HealthData/ElectrophysiologicalData'),
         meta: { title: '电生理数据', icon: 'table' }
       },
       {
-        path: 'ImageData',
+        path: '/ImageData',
         name: 'ImageData',
         component: () => import('@/views/HealthData/ImageData'),
         meta: { title: '影像数据', icon: 'table' }
       },
       {
-        path: 'OtherExam',
+        path: '/OtherExam',
         name: 'OtherExam',
         component: () => import('@/views/HealthData/OtherExam'),
         meta: { title: '其他检查', icon: 'table' }
       },
       {
-        path: 'SelectAll',
+        path: '/SelectAll',
         name: 'SelectAll',
         component: () => import('@/views/HealthData/SelectAll'),
         meta: { title: '全部查询', icon: 'table' }
@@ -225,14 +225,14 @@ export const constantRoutes = [
     meta: { title: '报表管理', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'test1',
-        name: 'test1',
+        path: '/test5',
+        name: 'test5',
         component: () => import('@/views/table'),
         meta: { title: 'nodata', icon: 'table' }
       },
       {
-        path: 'test2',
-        name: 'test2',
+        path: '/test6',
+        name: 'test6',
         component: () => import('@/views/table'),
         meta: { title: 'nodata', icon: 'table' }
       }
@@ -247,31 +247,31 @@ export const constantRoutes = [
     meta: { title: '系统配置', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'DoctorTeam',
+        path: '/DoctorTeam',
         name: 'DoctorTeam',
         component: () => import('@/views/SystemConfig/DoctorTeam'),
         meta: { title: '医生团队', icon: 'table' }
       },
       {
-        path: 'SignServePackage',
+        path: '/SignServePackage',
         name: 'SignServePackage',
         component: () => import('@/views/SystemConfig/SignServePackage'),
         meta: { title: '签约服务包', icon: 'table' }
       },
       {
-        path: 'SelectAppAcccount',
+        path: '/SelectAppAcccount',
         name: 'SelectAppAcccount',
         component: () => import('@/views/SystemConfig/SelectAppAcccount'),
         meta: { title: '筛查APP账号', icon: 'table' }
       },
       {
-        path: 'DeviceStockManage',
+        path: '/DeviceStockManage',
         name: 'DeviceStockManage',
         component: () => import('@/views/SystemConfig/DeviceStockManage'),
         meta: { title: '设备库存管理', icon: 'table' }
       },
       {
-        path: 'AdviceTemplate',
+        path: '/AdviceTemplate',
         name: 'AdviceTemplate',
         component: () => import('@/views/SystemConfig/AdviceTemplate'),
         meta: { title: '医嘱模板', icon: 'table' }

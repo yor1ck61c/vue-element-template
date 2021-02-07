@@ -4,17 +4,14 @@
 
 <script>
 import axios from 'axios'
-import { Message } from 'element-ui'
+// import { Message } from 'element-ui'
 export default {
   name: 'TestRequest',
   methods: {
     testRequest: function() {
-      var dto = { 'PatientID': '张学友', 'PatientName': '中国香港' }
-      axios.post('/api/Services/Medical/PatientManage.svc/AddPatient', dto).then((res) => {
-        alert(dto)
-        Message.success({
-          message: '解决跨域!'
-        })
+      var user = { 'username': 'admin', 'password': '111111' }
+      axios.post('/api/user/login', user).then((res) => {
+        alert(res.data)
       })
     }
   }

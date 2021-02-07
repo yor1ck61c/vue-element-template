@@ -38,7 +38,7 @@ module.exports = {
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:51556',
+        target: 'http://localhost:8080',
         changOrigin: true, // 允许跨域
         pathRewrite: {
           '^/api': '' // 请求的时候使用这个api就可以
