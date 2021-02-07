@@ -1,6 +1,8 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, myLogin, myGetUserInfo, myLogout } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
+// import { resolve } from 'core-js/fn/promise'
+import Cookies from 'js-cookie'
 
 const getDefaultState = () => {
   return {
@@ -28,6 +30,20 @@ const mutations = {
 }
 
 const actions = {
+  // MyLogin
+  MyLogin({ commit }, userInfo) {
+    const { username, password } = userInfo
+    return new Promise((resolve, reject) => {
+      myLogin({ username: username.trim(), password: password }).then((res) => {
+        const data = res.token
+        Cookies.set('Token', data)
+        commit('SET_TOKEN', data)
+        resolve()
+      }).catch((error) => {
+        reject(error)
+      })
+    })
+  },
   // user login
   login({ commit }, userInfo) {
     const { username, password } = userInfo
@@ -37,6 +53,23 @@ const actions = {
         commit('SET_TOKEN', data.token)
         setToken(data.token)
         resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+  // MyGetUserInfo
+  MyGetUserInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      myGetUserInfo(state.token).then((res) => {
+        console.log(res)
+        if (!res) {
+          return reject('认证失败,请重新登录')
+        }
+
+        commit('SET_NAME', res.name)
+        commit('SET_AVATAR', res.avatar)
+        resolve(res)
       }).catch(error => {
         reject(error)
       })
@@ -58,6 +91,20 @@ const actions = {
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
         resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  },
+
+  // MyLogout
+  MyLogout({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      myLogout(state.token).then(() => {
+        removeToken() // must remove  token  first
+        resetRouter()
+        commit('RESET_STATE')
+        resolve()
       }).catch(error => {
         reject(error)
       })
