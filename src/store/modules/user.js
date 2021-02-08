@@ -62,7 +62,6 @@ const actions = {
   MyGetUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       myGetUserInfo(state.token).then((res) => {
-        console.log(res)
         if (!res) {
           return reject('认证失败,请重新登录')
         }

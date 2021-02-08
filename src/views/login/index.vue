@@ -58,6 +58,7 @@ import { validUsername } from '@/utils/validate'
 export default {
   name: 'Login',
   data() {
+    // 有效用户名校验，可注释掉
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
         callback(new Error('Please enter the correct user name'))
@@ -106,6 +107,7 @@ export default {
       })
     },
     handleLogin() {
+      // 首先调用了element-ui自带的校验
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
