@@ -16,7 +16,9 @@ English | [简体中文](./README-zh.md)
 
 ```bash
 # clone the project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+git clone https://github.com.cnpmjs.org/yor1ck61c/vue-element-template.git
+
+通过cnpmjs.org加快克隆速度
 
 # enter the project directory
 cd vue-admin-template

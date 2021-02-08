@@ -21,7 +21,7 @@
           </div>
         </div>
       </el-row>
-      <el-row v-model="BasicInfos">
+      <el-row v-model="BasicInfos" style="font-size: 13px">
         <div style="margin-top: 10px; margin-bottom: 5px; color: #1E90FF">
           <span>基本信息</span>
         </div>

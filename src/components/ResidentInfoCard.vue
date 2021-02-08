@@ -39,12 +39,10 @@ export default {
       'ResidentInfo': {
         ID: '2'
       },
-      'github': 'https://github.com/yor1ck61c'
     }
   },
   mounted() {
     this.ResidentInfo.ID = this.$route.params.ID
-    alert(this.$route.params.ID)
   }
 }
 </script>
