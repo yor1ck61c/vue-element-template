@@ -28,6 +28,7 @@
         <el-dialog
           title="添加服务包"
           :visible.sync="addServePackageFormVisible"
+          style="color: #909399"
         >
           <el-form ref="NewServePackageInfo" :model="NewServePackageInfo" :rules="addServePackageRule">
             <el-form-item label="服务包名称" prop="addName" :label-width="formLabelWidth">
@@ -104,7 +105,7 @@
     <el-main>
       <el-row>
         <el-col>
-          <el-table :data="ServePackageInfos" border>
+          <el-table :data="ServePackageInfos" border style="font-size: 12px">
             <el-table-column label="操作" align="center">
               <el-button size="mini" @click="editServePackageInfos()">编辑</el-button>
               <el-button size="mini" @click="deleteServePackageInfos()">删除</el-button>

@@ -55,7 +55,7 @@
                 </el-form>
               </div>
               <div>
-                <el-table :data="DetectionReminderTable" border>
+                <el-table :data="DetectionReminderTable" border style="font-size: 12px">
                   <el-table-column prop="Edit" label="操作" align="center">
                     <el-button size="mini">一键提醒</el-button>
                   </el-table-column>
@@ -90,7 +90,7 @@
                 </el-form>
               </div>
               <div>
-                <el-table :data="FollowUpReminderTable" border>
+                <el-table :data="FollowUpReminderTable" border style="font-size: 12px">
                   <el-table-column prop="FollowUpEdit" label="操作" align="center">
                     <el-button size="mini">删除</el-button>
                     <el-button size="mini">随访</el-button>
@@ -130,7 +130,7 @@
                 </el-form>
               </div>
               <div>
-                <el-table :data="SigningReminderTable" border>
+                <el-table :data="SigningReminderTable" border style="font-size: 12px">
                   <el-table-column label="操作" align="center">
                     <el-button size="mini" type="primary">设备解绑</el-button>
                     <el-button size="mini" type="primary">解约</el-button>
@@ -207,3 +207,4 @@ export default {
   }
 }
 </script>
+

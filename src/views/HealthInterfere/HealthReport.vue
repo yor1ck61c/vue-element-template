@@ -37,7 +37,7 @@
                 <el-button type="primary" style="margin-left: 20px;">上月</el-button>
               </div>
               <div>
-                <el-table :data="AlreadyCheckHealthReportTable" border style="margin-top: 20px;">
+                <el-table :data="AlreadyCheckHealthReportTable" border style="margin-top: 20px; font-size: 12px">
                   <el-table-column prop="Name" label="姓名" align="center" />
                   <el-table-column prop="Gender" label="性别" align="center" />
                   <el-table-column prop="Age" label="年龄" align="center" />

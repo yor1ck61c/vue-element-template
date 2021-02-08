@@ -3,7 +3,7 @@
     <el-main>
       <el-row>
         <el-col :span="2" style="margin-top: 3px;">
-          <el-button size="medium" @click="back()">返回</el-button>
+          <el-button size="primary" @click="back()">返回</el-button>
         </el-col>
         <el-col :span="17">
           <el-tabs v-model="activeCard">
@@ -11,12 +11,12 @@
               <el-container>
                 <el-row>
                   <el-col>
-                    <el-card style="width: 800px;margin-left: 100px;margin-top: 50px;">
+                    <el-card style="width: 800px; margin-left: 100px; margin-top: 50px">
                       <div slot="header" style="text-align:center">
-                        <span style="font-size:20px;font-family:Hiragino Sans GB">个人基本信息表</span>
+                        <span style="font-size: 20px; color: #909399; font-family: Hiragino Sans GB">个人基本信息表</span>
                       </div>
                       <div>
-                        <table border="1px" cellspacing="0px" style="border-collapse:collapse;text-align:center; line-height:1.7; font-size:14px">
+                        <table border="1px" cellspacing="0px" style="border-collapse: collapse; text-align: center; border: 1px solid #DCDFE6; line-height: 1.7; font-size: 14px; color: #909399">
                           <tr>
                             <td width="230px">联系电话</td>
                             <td width="70%">{{ BasicInfoTable.PhoneNum }}</td>
@@ -68,11 +68,11 @@
               <el-container>
                 <el-main>
                   <el-row>
-                    <el-button style="float: right;" type="primary">新增签约合同</el-button>
+                    <el-button style="float: right" type="primary">新增签约合同</el-button>
                   </el-row>
                   <el-row>
                     <el-col>
-                      <el-table :data="SignRecord" border style="margin-top: 20px;">
+                      <el-table :data="SignRecord" border style="margin-top: 20px; font-size: 12px">
                         <el-table-column prop="SignTime" label="签约时间" align="center" width="150" />
                         <el-table-column prop="SignType" label="签约类型" align="center" width="150" />
                         <el-table-column prop="ServePackage" label="服务包" align="center" width="150" />
@@ -92,7 +92,7 @@
                 <el-main>
                   <el-row>
                     <el-col>
-                      <el-table :data="DiseaseRecord" border style="margin-top: 20px;">
+                      <el-table :data="DiseaseRecord" border style="margin-top: 20px; font-size: 12px">
                         <el-table-column prop="SeeDoctorTime" label="就诊时间" align="center" width="100" />
                         <el-table-column prop="DiseaseType" label="病例类型" align="center" width="100" />
                         <el-table-column prop="ServePattern" label="就诊服务模式" align="center" width="120" />
@@ -119,7 +119,7 @@
                   </el-row>
                   <el-row>
                     <el-col>
-                      <el-table :data="DiagnosisRecord" border style="margin-top: 20px;">
+                      <el-table :data="DiagnosisRecord" border style="margin-top: 20px; font-size: 12px">
                         <el-table-column prop="DiseaseName" label="疾病名称" align="center" width="150" />
                         <el-table-column prop="DiagnosedTime" label="确诊时间" align="center" width="150" />
                         <el-table-column prop="CourseOfDisease" label="病程（月）" align="center" width="100" />
@@ -138,7 +138,7 @@
             <el-tab-pane label="风险评估" name="RiskAssess">
               <el-card>
                 <div slot="header" style="text-align: center">
-                  <span>风险评估</span>
+                  <span style="color: #909399">风险评估</span>
                 </div>
                 <el-container>
                   <el-main>
@@ -173,7 +173,7 @@
               <el-container>
                 <el-main>
                   <el-row>
-                    <el-col>
+                    <el-col style="color: #909399">
                       选择时间:
                       <el-date-picker
                         v-model="SelectHealthInfo.StartTime"
@@ -199,24 +199,20 @@
                   <el-row style="margin-top: 20px;">
                     <el-card>
                       <div slot="header" style="text-align: center">
-                        <span>血压</span>
+                        <span style="color: #909399">血压</span>
                       </div>
                       <el-container>
                         <el-row>
                           <el-col :span="12">
-                            <div style="width:400px; height: 230px; border: 1px solid; margin-left: 50px;">
-                              1
-                            </div>
+                            <div style="width:400px; height: 230px; border: 1px solid #DCDFE6; margin-left: 50px;"><!----></div>
                           </el-col>
                           <el-col :span="12">
-                            <div style="margin-left: 50px;;width:400px; height: 230px;border: 1px solid">
-                              1
-                            </div>
+                            <div style="margin-left: 50px;;width:400px; height: 230px;border: 1px solid #DCDFE6"><!----></div>
                           </el-col>
                         </el-row>
                       </el-container>
-                      <div style="margin-top: 20px;">
-                        <el-table :data="BloodPressureCountTable" border style="font-size:13px">
+                      <div style="margin-top: 20px">
+                        <el-table :data="BloodPressureCountTable" border style="font-size:12px">
                           <el-table-column prop="Date" label="日期" align="center" />
                           <el-table-column prop="GetUp" label="早起后" align="center" />
                           <el-table-column prop="Morning" label="上午" align="center" />
@@ -231,10 +227,10 @@
                       </div>
                     </el-card>
                   </el-row>
-                  <el-row style="margin-top: 20px;">
+                  <el-row style="margin-top: 20px">
                     <el-card>
                       <div slot="header" style="text-align: center">
-                        <span>糖尿病</span>
+                        <span style="color: #909399">糖尿病</span>
                       </div>
                       <el-container>
                         <el-row>
@@ -247,7 +243,7 @@
                         </el-row>
                       </el-container>
                       <div style="margin-top: 20px;">
-                        <el-table :data="BloodSugarCountTable" border style="font-size:13px">
+                        <el-table :data="BloodSugarCountTable" border style="font-size:12px">
                           <el-table-column prop="BeforeDawn" label="凌晨" align="center" />
                           <el-table-column prop="BeforeBreakfast" label="早餐前" align="center" />
                           <el-table-column prop="AfterBreakfast" label="早餐后" align="center" />
@@ -275,7 +271,7 @@
                   </el-row>
                   <el-row>
                     <el-col>
-                      <el-table :data="PERecord" border style="margin-top: 20px;">
+                      <el-table :data="PERecord" border style="margin-top: 20px; font-size: 12px">
                         <el-table-column prop="PETime" label="体检日期" align="center" width="200" />
                         <el-table-column prop="HealthEvaluate" label="健康评价" align="center" width="200" />
                         <el-table-column prop="MainProblem" label="主要健康问题" align="center" width="200" />
@@ -302,7 +298,7 @@
                       </el-select>
                       <el-card style="margin-top: 20px;">
                         <div slot="header" style="text-align: center">
-                          <span style="font-size:14px">干预计划</span>
+                          <span style="font-size: 14px; color: #909399">干预计划</span>
                         </div>
                       </el-card>
                     </el-col>
@@ -313,10 +309,10 @@
                             <el-col>
                               <el-card>
                                 <div slot="header">
-                                  <span style="margin-left: 300px;">确诊信息</span>
-                                  <span style="float: right; font-size:12px;">展开完整确诊信息</span>
+                                  <span style="margin-left: 300px; color: #909399">确诊信息</span>
+                                  <span style="float: right; font-size: 12px; color: #909399">展开完整确诊信息</span>
                                 </div>
-                                <table border="1px" cellspacing="0px" style="width: 100%;border-collapse:collapse;text-align:center; line-height:1.7; font-size:14px">
+                                <table border="1px" cellspacing="0px" style="width: 100%; border-collapse: collapse; text-align: center; line-height:1.7; font-size:14px; border: 1px solid #DCDFE6; color: #909399">
                                   <tr>
                                     <td>确诊疾病</td>
                                     <td>心脏病</td>
@@ -330,7 +326,7 @@
                           <el-row style="margin-top: 20px;">
                             <el-card>
                               <el-tabs v-model="IPActiveCard">
-                                <el-tab-pane label="计划详情" name="PlanDetail">
+                                <el-tab-pane label="计划详情" name="PlanDetail" style="color: #909399">
                                   <div style="font-size: 13px">
                                     计划时间：
                                   </div>
@@ -408,7 +404,7 @@
                   </el-row>
                   <el-row>
                     <el-col>
-                      <el-table :data="FollowUpRecord" border style="margin-top: 20px;">
+                      <el-table :data="FollowUpRecord" border style="margin-top: 20px; font-size: 12px">
                         <el-table-column prop="FollowUpTime" label="随访时间" align="center" width="100" />
                         <el-table-column prop="DiseaseName" label="疾病名称" align="center" width="100" />
                         <el-table-column prop="FollowUpType" label="随访类型" align="center" width="100" />
@@ -435,7 +431,7 @@
                 <el-main>
                   <el-row>
                     <el-col>
-                      <el-table :data="AlertRecord" border style="margin-top: 20px;">
+                      <el-table :data="AlertRecord" border style="margin-top: 20px; font-size: 12px">
                         <el-table-column prop="AlertTime" label="预警时间" align="center" width="150" />
                         <el-table-column prop="AlertType" label="预警类型" align="center" width="150" />
                         <el-table-column prop="ExamTarget" label="检测指标" align="center" width="100" />
@@ -456,7 +452,7 @@
               <el-container>
                 <el-row>
                   <el-col>
-                    <el-table :data="DeviceManageInfos" border style="margin-left: 50px;margin-top: 20px;">
+                    <el-table :data="DeviceManageInfos" border style="margin-left: 50px;margin-top: 20px; font-size: 12px">
                       <el-table-column prop="ContractNum" label="合同编号" align="center" width="150" />
                       <el-table-column prop="ReceiveTime" label="领用时间" align="center" width="150" />
                       <el-table-column prop="DeviceName" label="设备名称" align="center" width="150" />

@@ -161,7 +161,7 @@
     <el-main>
       <el-row>
         <el-col>
-          <el-table :data="ManageSignDataTable" border>
+          <el-table :data="ManageSignDataTable" border style="font-size: 12px">
             <el-table-column label="操作" align="center">
               <el-button size="mini" @click="CancelManageSign()">解约</el-button>
               <el-button size="mini" @click="ManageSignDetail()">详情</el-button>

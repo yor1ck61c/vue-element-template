@@ -56,11 +56,8 @@
             <el-button type="primary" @click="addDeviceStockManageFormVisible = true">设备入库</el-button>
           </el-form-item>
         </el-form>
-        <el-dialog
-          title="设备入库"
-          :visible.sync="addDeviceStockManageFormVisible"
-        >
-          <el-form :model="NewDeviceStockManageInfo" :rules="addDeviceStockManageRule">
+        <el-dialog title="设备入库" :visible.sync="addDeviceStockManageFormVisible">
+          <el-form :model="NewDeviceStockManageInfo" :rules="addDeviceStockManageRule" style="font-size: 12px">
             <el-form-item label="设备类型" prop="addEquipmentType" :label-width="formLabelWidth">
               <el-select
                 v-model="NewDeviceStockManageInfo.addEquipmentType"
@@ -130,7 +127,7 @@
     <el-main>
       <el-row>
         <el-col>
-          <el-table :data="DeviceStockManageInfos" border>
+          <el-table :data="DeviceStockManageInfos" border style="font-size: 12px">
             <el-table-column label="操作" align="center">
               <el-button size="mini">配置服务</el-button>
               <el-button size="mini">编辑</el-button>

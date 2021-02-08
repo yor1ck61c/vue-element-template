@@ -25,7 +25,7 @@
         <div style="margin-top: 10px; margin-bottom: 5px; color: #1E90FF">
           <span>基本信息</span>
         </div>
-        <el-container style="color: #909399; border: 1px solid #DCDFE6; line-height: 30px">
+        <el-container style="font-size: 13px; color: #909399; border: 1px solid #DCDFE6; line-height: 30px">
           <el-row>
             <el-col :span="2" style="">
               <div style="border: 1px solid #DCDFE6; width: 60px; height: 100px; margin-left: 5px; margin-top: 5px">1</div>
@@ -199,7 +199,7 @@
           <span style="display: block; margin-left: 5px; margin-top: 5px">心脏疾病</span>
         </div>
         <div style="color: #909399">
-          <table border="1" cellspacing="0" width="879px" style="line-height:1.7; font-size:13px; border: solid 1px #d2d2d2 ">
+          <table border="1" cellspacing="0" width="879px" style="line-height:1.7; font-size:13px; border: solid 1px #DCDFE6 ">
             <tr>
               <td style="width: 300px"><div style="margin-left: 5px;">本期治疗计划</div></td>
               <td>
@@ -275,17 +275,22 @@
         </el-form>
       </el-row>
       <el-row style="text-align: center; margin-top: 10px">
-        <span>
-          <el-button type="primary">保存</el-button>
-          <el-button type="warning">打印</el-button>
-        </span>
+        <div style="font-size: 8px; color: #909399">
+          <font style="color: red">*</font> 提示：点击保存后，如果不退出当前页面可继续操作，否则需要进入已处理进行打印
+        </div>
+        <div style="margin-top: 10px">
+          <span>
+            <el-button type="primary">保存</el-button>
+            <el-button type="warning">打印</el-button>
+          </span>
+        </div>
       </el-row>
     </el-main>
     <el-aside v-model="ReportStatistics" style="width: 300px">
-      <div style="margin-left:100px; margin-top: 20px">
-        <p>报告统计：</p>
-        <p>已处理：{{ ReportStatistics.Processed }}份</p>
-        <p>未处理：{{ ReportStatistics.Unprocessed }}份</p>
+      <div style="margin-left:100px; margin-top: 20px; color: #909399; font-size: 18px">
+        <p style="font-size: 16px; line-height: 10px">报告统计：</p>
+        <p>已处理:<font style="color: #1E90FF">{{ ReportStatistics.Processed }}</font>份</p>
+        <p>未处理:<font style="color: #1E90FF">{{ ReportStatistics.Unprocessed }}</font>份</p>
       </div>
     </el-aside>
   </el-container>
@@ -298,85 +303,85 @@ export default {
   data() {
     return {
       ReportInfos: {
-        Reporter: '111',
-        Time: '111'
+        Reporter: '',
+        Time: ''
       },
       BasicInfos: {
-        Idcard: '111',
-        Name: '111',
-        Birthday: '111',
-        Age: '111',
-        Sex: '111',
-        Nation: '111',
-        Tel: '111',
-        Contact: '111',
-        ContactTel: '111',
-        PermanentAddress: '111',
-        Address: '111',
-        BloodType: '111',
-        RH: '111',
-        MaritalStatus: '111',
-        IllHistory: '111',
-        Dad: '111',
-        Mom: '111',
-        BroSis: '111',
-        Son: '111',
-        GeneticHistory: '111',
-        Allergen: '111'
+        Idcard: '',
+        Name: '',
+        Birthday: '',
+        Age: '',
+        Sex: '',
+        Nation: '',
+        Tel: '',
+        Contact: '',
+        ContactTel: '',
+        PermanentAddress: '',
+        Address: '',
+        BloodType: '',
+        RH: '',
+        MaritalStatus: '',
+        IllHistory: '',
+        Dad: '',
+        Mom: '',
+        BroSis: '',
+        Son: '',
+        GeneticHistory: '',
+        Allergen: ''
       },
       DiagnosisInfos: {
-        DiagnosisIll: '111',
-        DiagnosisTime: '111',
-        CourseOfDiseaseTime: '111'
+        DiagnosisIll: '',
+        DiagnosisTime: '',
+        CourseOfDiseaseTime: ''
       },
       HealthAssessment: {
-        Summary: '111',
-        Name: '111',
-        Level: '111'
+        Summary: '',
+        Name: '',
+        Level: ''
       },
       LatestTestIndex: {
-        InspectionItems: '111',
-        TimeOfDiagnosis: '111',
-        NormalRangeValue: '111',
-        AnalysisResults: '111',
-        InspectionTime: '111'
+        InspectionItems: '',
+        TimeOfDiagnosis: '',
+        NormalRangeValue: '',
+        AnalysisResults: '',
+        InspectionTime: ''
       },
       BloodPressure: {
-        Avg: '111'
+        Avg: ''
       },
       BloodSuger: {
-        Avg: '111',
-        Max: '111',
-        Min: '111'
+        Avg: '',
+        Max: '',
+        Min: ''
       },
       Cholesterol: {
-        Avg: '111',
-        Max: '111',
-        Min: '111'
+        Avg: '',
+        Max: '',
+        Min: ''
       },
       HDInterventionStatus: {
-        CourseOfTreatment: '111',
+        CourseOfTreatment: '',
         BloodPressureControlTarget: '',
-        Medicine: '111',
-        FoodAdvice: '111',
-        DoctorAdvice: '111'
+        Medicine: '',
+        FoodAdvice: '',
+        DoctorAdvice: ''
       },
       HBPInterventionStatus: {
-        CourseOfTreatment: '111',
+        CourseOfTreatment: '',
         BloodPressureControlTarget: '',
-        Medicine: '111',
-        FoodAdvice: '111',
-        DoctorAdvice: '111'
+        Medicine: '',
+        FoodAdvice: '',
+        DoctorAdvice: ''
       },
       FollowUpReport: {
-        Text: '111'
+        Text: ''
       },
       SurveyOfDetection: {
-        Text: '111'
+        Text: ''
       },
       ReportStatistics: {
-        Processed: '111',
-        Unprocessed: '111'
+        Processed: '',
+        Unprocessed: ''
       },
       MedicalAdvice: {}
     }

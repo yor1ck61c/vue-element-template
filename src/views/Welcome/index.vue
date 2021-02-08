@@ -2,16 +2,16 @@
   <el-container>
     <el-header style="margin-top: 20px;">
       <el-row>
-        <el-col :span="6" style="text-align:center">
+        <el-col :span="6" style="text-align: center; color: #909399">
           <div>档案检测：{{ ExamPeopleSum }}人</div>
         </el-col>
-        <el-col :span="4" style="margin-left: 200px;">
+        <el-col :span="4" style="margin-left: 200px; color: #909399">
           <div>今日检测：血糖{{ BloodSugar }}人</div>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="2" style="color: #909399">
           <div>血压{{ BloodPressure }}人</div>
         </el-col>
-        <el-col :span="2">
+        <el-col :span="2" style="color: #909399">
           <div>心电图{{ Electrocardiogram }}人</div>
         </el-col>
       </el-row>
@@ -21,24 +21,24 @@
       <el-row>
         <el-col :span="8" style="border: #6cadc8 solid 1px">
           <el-card>
-            <div slot="header" style="text-align:center">疾病分布</div>
+            <div slot="header" style="text-align: center; color: #909399">疾病分布</div>
             <div ref="DiseaseDistribute" style="width: 100%; height: 280px; margin: 5px;" />
           </el-card>
           <el-card>
-            <div slot="header" style="text-align:center">年龄分布</div>
+            <div slot="header" style="text-align: center; color: #909399">年龄分布</div>
             <div ref="AgeDistribute" style="width: 100%; height: 280px; margin: 5px;" />
           </el-card>
           <el-card>
-            <div slot="header" style="text-align:center">性别分布</div>
+            <div slot="header" style="text-align:center; color: #909399">性别分布</div>
             <div ref="GenderDistribute" style="width: 100%; height: 280px; margin: 5px;" />
           </el-card>
         </el-col>
         <el-col :span="15" style="border: #6cadc8 solid 1px; margin-left: 10px;">
           <div style="margin: 5px; width: 100%">
-            <span style="margin-left: 5px;"><i class="el-icon-user-solid" /> 七天内实测数据</span>
-            <a href="#" style="float: right; margin-right: 20px; font-size: 14px;">更多</a>
+            <span style="margin-left: 5px; color: #909399"><i class="el-icon-user-solid" /> 七天内实测数据</span>
+            <a href="#" style="float: right; margin-right: 20px; font-size: 14px; color: #909399">更多</a>
           </div>
-          <el-table :data="RealTimeMonitorData" border style="margin-top: 10px;">
+          <el-table :data="RealTimeMonitorData" border style="margin-top: 10px; font-size: 12px">
             <el-table-column prop="Name" label="姓名" align="center" />
             <el-table-column prop="Gender" label="性别" align="center" />
             <el-table-column prop="Age" label="年龄" align="center" />

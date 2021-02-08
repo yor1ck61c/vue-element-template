@@ -79,27 +79,27 @@ export default {
   data() {
     return {
       ResidentInfo: {
-        Name: '老八',
-        Sex: '老八',
-        Age: '老八',
-        Tel: '老八',
-        Idcard: '老八'
+        Name: '',
+        Sex: '',
+        Age: '',
+        Tel: '',
+        Idcard: ''
       },
       WarningInformation: {
-        TestIndex: '老八',
-        TestValue: '老八',
-        AnalysisResults: '老八',
-        TestTime: '老八',
-        WarningTime: '老八',
-        WarningTypes: '老八',
-        WarningDescription: '老八',
-        ReferenceValue: '老八'
+        TestIndex: '',
+        TestValue: '',
+        AnalysisResults: '',
+        TestTime: '',
+        WarningTime: '',
+        WarningTypes: '',
+        WarningDescription: '',
+        ReferenceValue: ''
       },
       DiagnosisTable: [],
       handleInfosForm: {
-        HandleDoctor: '老八',
-        option: '老八',
-        optionText: '老八'
+        HandleDoctor: '',
+        option: '',
+        optionText: ''
       }
     }
   },

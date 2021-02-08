@@ -81,16 +81,16 @@
       <el-row :gutter="20">
         <el-col :span="4">
           <div>
-            <div style="width: 100%;text-align: left;">
-              <div style="font-size:18px;">我添加或加入的团队</div>
+            <div style="width: 100%; text-align: left">
+              <div style="font-size:18px; font-weight: 500; color: #64706F; background-color: #EEEEEE; line-height: 40px">我添加或加入的团队</div>
             </div>
-            <div v-for="info in JoinedDoctorTeamInfo" :key="info.id" style="border: slategray solid 1px; margin-top: 10px">
+            <div v-for="info in JoinedDoctorTeamInfo" :key="info.id" style="border: solid 1px #DCDFE6">
               <div style="font-size: 16px;margin: 3px; color: #0281ff;">{{ info.TeamName }}医生团队</div>
-              <div style="font-size: 13px;margin: 3px;">团队类型：{{ info.TeamType }}</div>
-              <div style="font-size: 13px;margin: 3px;">创建者：{{ info.Creator }}</div>
-              <div style="font-size: 13px;margin: 3px;">团队人数：{{ info.NumOfPeople }}</div>
-              <div style="font-size: 13px;margin: 3px;">团队描述：{{ info.Describe }}</div>
-              <div style="font-size: 13px;margin: 3px;">团队状态：{{ info.Status }}</div>
+              <div style="font-size: 13px;margin: 3px; color: #64706F">团队类型：{{ info.TeamType }}</div>
+              <div style="font-size: 13px;margin: 3px; color: #64706F">创建者：{{ info.Creator }}</div>
+              <div style="font-size: 13px;margin: 3px; color: #64706F">团队人数：{{ info.NumOfPeople }}</div>
+              <div style="font-size: 13px;margin: 3px; color: #64706F">团队描述：{{ info.Describe }}</div>
+              <div style="font-size: 13px;margin: 3px; color: #64706F">团队状态：{{ info.Status }}</div>
               <div>
                 <el-button style="margin: 3px;margin-right: -3px;" type="primary" size="mini">新增</el-button>
                 <el-button type="primary" size="mini">编辑</el-button>
@@ -100,10 +100,10 @@
           </div>
         </el-col>
         <el-col :span="20">
-          <div style="width:100%; text-align:center">
+          <div style="width:100%; text-align:center;  color: #64706F">
             <div style="font-size:20px">全科医生团队</div>
           </div>
-          <el-table :data="DoctorTeamInfos" border style="margin-top: 7px;">
+          <el-table :data="DoctorTeamInfos" border style="margin-top: 10px; font-size: 12px">
             <el-table-column label="操作" align="center">
               <el-button size="mini" @click="editDoctorTeamInfos()">编辑</el-button>
               <el-button size="mini" @click="deleteDoctorTeamInfos()">删除</el-button>
@@ -135,12 +135,12 @@ export default {
       formLabelWidth: '130px',
       DoctorTeamInfos: [],
       JoinedDoctorTeamInfo: [{
-        TeamName: '1',
-        TeamType: '1',
-        Creator: '1',
-        NumOfPeople: '1',
-        Describe: '1',
-        Status: '1'
+        TeamName: '',
+        TeamType: '',
+        Creator: '',
+        NumOfPeople: '',
+        Describe: '',
+        Status: ''
       }
       ],
       NewDoctorTeamInfo: {
