@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">登录</h3>
+        <h3 class="title">欢迎使用管理系统</h3>
       </div>
 
       <el-form-item prop="username">
@@ -41,12 +41,9 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
 
-      <div class="tips">
-        <span style="margin-right:20px;">用户名: admin</span>
-        <span> 密码: 任意</span>
-      </div>
+      <div class="tips" />
 
     </el-form>
   </div>
@@ -107,17 +104,23 @@ export default {
       })
     },
     handleLogin() {
-      // 首先调用了element-ui自带的校验
+      // 首先调用了element-ui自带的表单校验async-validator
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          // 播放加载动画
           this.loading = true
+          // vuex异步操作，调用store/user.js中的MyLogin方法。MyLogin由自己定义
           this.$store.dispatch('user/MyLogin', this.loginForm).then(() => {
+            // 登录成功，调用vue-router的push方法打开首页（router中首页的链接设置为‘/’）
             this.$router.push({ path: this.redirect || '/' })
+            // 关闭加载动画
             this.loading = false
+          // 登录失败
           }).catch(() => {
             this.loading = false
           })
         } else {
+          // 表单内容有误，阻止提交。
           console.log('error submit!!')
           return false
         }

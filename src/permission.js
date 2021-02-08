@@ -32,6 +32,7 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           // get user info
+          // 这里替换成自己的获取用户信息方法。
           await store.dispatch('user/MyGetUserInfo')
 
           next()
