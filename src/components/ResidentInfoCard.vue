@@ -38,7 +38,7 @@ export default {
     return {
       'ResidentInfo': {
         ID: '2'
-      },
+      }
     }
   },
   mounted() {
