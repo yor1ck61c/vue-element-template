@@ -137,13 +137,13 @@ export const constantRoutes = [
       {
         path: '/test1',
         name: 'test1',
-        component: () => import('@/views/table'),
+        component: () => import('@/views/Test/test'),
         meta: { title: 'nodata', icon: 'table' }
       },
       {
         path: '/test2',
         name: 'test2',
-        component: () => import('@/views/table'),
+        component: () => import('@/views/Test/test'),
         meta: { title: 'nodata', icon: 'table' }
       }
     ]
@@ -159,13 +159,13 @@ export const constantRoutes = [
       {
         path: '/test3',
         name: 'test3',
-        component: () => import('@/views/table'),
+        component: () => import('@/views/Test/test'),
         meta: { title: 'nodata', icon: 'table' }
       },
       {
         path: '/test4',
         name: 'test4',
-        component: () => import('@/views/table'),
+        component: () => import('@/views/Test/test'),
         meta: { title: 'nodata', icon: 'table' }
       }
     ]
@@ -227,13 +227,13 @@ export const constantRoutes = [
       {
         path: '/test5',
         name: 'test5',
-        component: () => import('@/views/table'),
+        component: () => import('@/views/Test/test'),
         meta: { title: 'nodata', icon: 'table' }
       },
       {
         path: '/test6',
         name: 'test6',
-        component: () => import('@/views/table'),
+        component: () => import('@/views/Test/test'),
         meta: { title: 'nodata', icon: 'table' }
       }
     ]
