@@ -56,29 +56,42 @@ export const constantRoutes = [
   },
 
   {
+    path: 'external-link',
+    component: Layout,
+    children: [
+      {
+        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+        meta: { title: 'External Link', icon: 'link' }
+      }
+    ]
+  }
+]
+
+export const asyncRoutes = [
+  {
     path: '/QuickMenu',
     component: Layout,
     redirect: '/QuickMenu/MonitorAlert',
     name: 'QuickMenu',
-    meta: { title: '快捷菜单', icon: 'el-icon-s-help' },
+    meta: { title: '快捷菜单', icon: 'el-icon-s-help', roles: ['admin', 'user'] },
     children: [
       {
         path: '/MonitorAlert',
         name: 'MonitorAlert',
         component: () => import('@/views/QuickMenu/MonitorAlert'),
-        meta: { title: '预警监控', icon: 'table' }
+        meta: { title: '预警监控', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/WorkReminder',
         name: 'WorkReminder',
         component: () => import('@/views/QuickMenu/WorkReminder'),
-        meta: { title: '工作提醒', icon: 'table' }
+        meta: { title: '工作提醒', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/dialog',
         name: 'dialog',
         component: () => import('@/views/QuickMenu/dialog'),
-        meta: { title: '医患交流', icon: 'tree' }
+        meta: { title: '医患交流', icon: 'tree', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -88,19 +101,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/HealthInterfere/HandleAlert',
     name: 'HealthInterfere',
-    meta: { title: '健康干预', icon: 'el-icon-s-help' },
+    meta: { title: '健康干预', icon: 'el-icon-s-help', roles: ['admin', 'user'] },
     children: [
       {
         path: '/HandleAlert',
         name: 'HandleAlert',
         component: () => import('@/views/HealthInterfere/HandleAlert'),
-        meta: { title: '预警处置', icon: 'table' }
+        meta: { title: '预警处置', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/HealthReport',
         name: 'HealthReport',
         component: () => import('@/views/HealthInterfere/HealthReport'),
-        meta: { title: '健康报告', icon: 'table' }
+        meta: { title: '健康报告', icon: 'table', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -110,19 +123,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/SignAndRecord/BasicRecord',
     name: 'SignAndRecord',
-    meta: { title: '签约建档', icon: 'el-icon-s-help' },
+    meta: { title: '签约建档', icon: 'el-icon-s-help', roles: ['admin', 'user'] },
     children: [
       {
         path: '/BasicRecord',
         name: 'BasicRecord',
         component: () => import('@/views/SignAndRecord/BasicRecord'),
-        meta: { title: '基本档案', icon: 'table' }
+        meta: { title: '基本档案', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/ManageSign',
         name: 'ManageSign',
         component: () => import('@/views/SignAndRecord/ManageSign'),
-        meta: { title: '签约管理', icon: 'table' }
+        meta: { title: '签约管理', icon: 'table', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -132,19 +145,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/HeartInternal/test',
     name: 'HeartInternal',
-    meta: { title: '内分泌科', icon: 'el-icon-s-help' },
+    meta: { title: '内分泌科', icon: 'el-icon-s-help', roles: ['admin'] },
     children: [
       {
         path: '/test1',
         name: 'test1',
         component: () => import('@/views/Test/test'),
-        meta: { title: 'nodata', icon: 'table' }
+        meta: { title: 'nodata', icon: 'table', roles: ['admin'] }
       },
       {
         path: '/test2',
         name: 'test2',
         component: () => import('@/views/Test/test'),
-        meta: { title: 'nodata', icon: 'table' }
+        meta: { title: 'nodata', icon: 'table', roles: ['admin'] }
       }
     ]
   },
@@ -154,19 +167,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/PhysicalExam/test',
     name: 'PhysicalExam',
-    meta: { title: '体检科', icon: 'el-icon-s-help' },
+    meta: { title: '体检科', icon: 'el-icon-s-help', roles: ['admin'] },
     children: [
       {
         path: '/test3',
         name: 'test3',
         component: () => import('@/views/Test/test'),
-        meta: { title: 'nodata', icon: 'table' }
+        meta: { title: 'nodata', icon: 'table', roles: ['admin'] }
       },
       {
         path: '/test4',
         name: 'test4',
         component: () => import('@/views/Test/test'),
-        meta: { title: 'nodata', icon: 'table' }
+        meta: { title: 'nodata', icon: 'table', roles: ['admin'] }
       }
     ]
   },
@@ -176,43 +189,43 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/HealthData/BodyData',
     name: 'HealthData',
-    meta: { title: '健康数据', icon: 'el-icon-s-help' },
+    meta: { title: '健康数据', icon: 'el-icon-s-help', roles: ['admin', 'user'] },
     children: [
       {
         path: '/BodyData',
         name: 'BodyData',
         component: () => import('@/views/HealthData/BodyData'),
-        meta: { title: '体征数据', icon: 'table' }
+        meta: { title: '体征数据', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/BiochemicalData',
         name: 'BiochemicalData',
         component: () => import('@/views/HealthData/BiochemicalData'),
-        meta: { title: '生化数据', icon: 'table' }
+        meta: { title: '生化数据', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/ElectrophysiologicalData',
         name: 'ElectrophysiologicalData',
         component: () => import('@/views/HealthData/ElectrophysiologicalData'),
-        meta: { title: '电生理数据', icon: 'table' }
+        meta: { title: '电生理数据', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/ImageData',
         name: 'ImageData',
         component: () => import('@/views/HealthData/ImageData'),
-        meta: { title: '影像数据', icon: 'table' }
+        meta: { title: '影像数据', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/OtherExam',
         name: 'OtherExam',
         component: () => import('@/views/HealthData/OtherExam'),
-        meta: { title: '其他检查', icon: 'table' }
+        meta: { title: '其他检查', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/SelectAll',
         name: 'SelectAll',
         component: () => import('@/views/HealthData/SelectAll'),
-        meta: { title: '全部查询', icon: 'table' }
+        meta: { title: '全部查询', icon: 'table', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -222,19 +235,19 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/ReportManage/test',
     name: 'ReportManage',
-    meta: { title: '报表管理', icon: 'el-icon-s-help' },
+    meta: { title: '报表管理', icon: 'el-icon-s-help', roles: ['admin'] },
     children: [
       {
         path: '/test5',
         name: 'test5',
         component: () => import('@/views/Test/test'),
-        meta: { title: 'nodata', icon: 'table' }
+        meta: { title: 'nodata', icon: 'table', roles: ['admin'] }
       },
       {
         path: '/test6',
         name: 'test6',
         component: () => import('@/views/Test/test'),
-        meta: { title: 'nodata', icon: 'table' }
+        meta: { title: 'nodata', icon: 'table', roles: ['admin'] }
       }
     ]
   },
@@ -244,37 +257,37 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/SystemConfig/DoctorTeam',
     name: 'SystemConfig',
-    meta: { title: '系统配置', icon: 'el-icon-s-help' },
+    meta: { title: '系统配置', icon: 'el-icon-s-help', roles: ['admin', 'user'] },
     children: [
       {
         path: '/DoctorTeam',
         name: 'DoctorTeam',
         component: () => import('@/views/SystemConfig/DoctorTeam'),
-        meta: { title: '医生团队', icon: 'table' }
+        meta: { title: '医生团队', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/SignServePackage',
         name: 'SignServePackage',
         component: () => import('@/views/SystemConfig/SignServePackage'),
-        meta: { title: '签约服务包', icon: 'table' }
+        meta: { title: '签约服务包', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/SelectAppAcccount',
         name: 'SelectAppAcccount',
         component: () => import('@/views/SystemConfig/SelectAppAcccount'),
-        meta: { title: '筛查APP账号', icon: 'table' }
+        meta: { title: '筛查APP账号', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/DeviceStockManage',
         name: 'DeviceStockManage',
         component: () => import('@/views/SystemConfig/DeviceStockManage'),
-        meta: { title: '设备库存管理', icon: 'table' }
+        meta: { title: '设备库存管理', icon: 'table', roles: ['admin', 'user'] }
       },
       {
         path: '/AdviceTemplate',
         name: 'AdviceTemplate',
         component: () => import('@/views/SystemConfig/AdviceTemplate'),
-        meta: { title: '医嘱模板', icon: 'table' }
+        meta: { title: '医嘱模板', icon: 'table', roles: ['admin', 'user'] }
       }
     ]
   },
@@ -283,7 +296,7 @@ export const constantRoutes = [
     path: '/RecordDetails',
     name: 'RecordDetails',
     component: () => import('@/views/ExtraPage/RecordDetails'),
-    meta: { title: '档案详情' },
+    meta: { title: '档案详情', roles: ['admin', 'user'] },
     hidden: true
   },
 
@@ -291,7 +304,7 @@ export const constantRoutes = [
     path: '/ManageAlert',
     name: 'ManageAlert',
     component: () => import('@/views/ExtraPage/ManageAlert'),
-    meta: { title: '预警处置' },
+    meta: { title: '预警处置', roles: ['admin', 'user'] },
     hidden: true
   },
 
@@ -307,17 +320,6 @@ export const constantRoutes = [
     name: 'testRequest',
     component: () => import('@/views/Test/test'),
     hidden: true
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
   },
 
   // 404 page must be placed at the end !!!

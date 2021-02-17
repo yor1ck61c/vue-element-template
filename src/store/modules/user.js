@@ -7,7 +7,8 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    roles: []
   }
 }
 
@@ -25,6 +26,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles
   }
 }
 
@@ -67,6 +71,11 @@ const actions = {
           return reject('认证失败,请重新登录')
         }
         // 并将用户昵称和头像存入本地。
+        const roles = res.role.split(',')
+        if (!roles || roles.length <= 0) {
+          reject('getInfo: roles must be a non-null array!')
+        }
+        commit('SET_ROLES', roles)
         commit('SET_NAME', res.name)
         commit('SET_AVATAR', res.avatar)
         resolve(res)
