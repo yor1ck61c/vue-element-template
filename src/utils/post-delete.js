@@ -1,17 +1,19 @@
 import axios from 'axios'
+import { Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-// import { Message } from 'element-ui'
 
-// axios二次封装
-const axiosInstance = axios.create({
+const HandleDelete = axios.create({
   baseURL: '/api',
   timeout: 0,
-  withCredentials: true
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json'
+  }
 })
 
 // request interceptor
-axiosInstance.interceptors.request.use(
+HandleDelete.interceptors.request.use(
   config => {
     // do something before request is sent
 
@@ -30,7 +32,7 @@ axiosInstance.interceptors.request.use(
   }
 )
 // 响应axios拦截器
-/* axiosInstance.interceptors.response.use((res) => {
+HandleDelete.interceptors.response.use((res) => {
   if (res.data.code && res.data.code !== 200) {
     Message.error({
       message: res.data.msg
@@ -46,6 +48,6 @@ axiosInstance.interceptors.request.use(
       break
     }
   }
-})*/
+})
 
-export default axiosInstance
+export default HandleDelete
