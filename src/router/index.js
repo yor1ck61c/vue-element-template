@@ -97,6 +97,29 @@ export const asyncRoutes = [
   },
 
   {
+    path: '/UserControl',
+    component: Layout,
+    redirect: '/UserControl/Account',
+    name: 'UserControl',
+    meta: { title: '用户管理', icon: 'el-icon-s-help', roles: ['admin'] },
+    children: [
+      {
+        path: '/Account',
+        name: 'Account',
+        component: () => import('@/views/UserControl/Account'),
+        meta: { title: '账号管理', icon: 'el-icon-s-help', roles: ['admin'] }
+      },
+      {
+        path: '/Role',
+        name: 'Role',
+        component: () => import('@/views/UserControl/Role'),
+        meta: { title: '角色管理', icon: 'el-icon-s-help', roles: ['admin'] }
+      }
+    ]
+
+  },
+
+  {
     path: '/HealthInterfere',
     component: Layout,
     redirect: '/HealthInterfere/HandleAlert',

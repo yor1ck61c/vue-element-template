@@ -9,8 +9,8 @@ export default {
   name: 'TestRequest',
   methods: {
     testRequest: function() {
-      var user = { 'username': 'admin', 'password': '111111' }
-      axios.post('/api/user/login', user).then((res) => {
+      // var user = { 'username': 'admin', 'password': '111111' }
+      axios.post('/api/user/logout').then((res) => {
         alert(res.data)
       })
     }
