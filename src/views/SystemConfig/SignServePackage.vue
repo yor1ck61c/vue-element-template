@@ -178,7 +178,6 @@ export default {
     addServePackage: function(NewServePackageInfo) {
       this.$refs[NewServePackageInfo].validate((valid) => {
         if (valid) {
-          alert(this.NewServePackageInfo.addName + ' ' + NewServePackageInfo.addNum + ' ' + NewServePackageInfo.addFitPeople)
           addServePackage(NewServePackageInfo).then((res) => {
             this.ServePackageInfos = res.data.ServePackageInfos
           })

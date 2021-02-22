@@ -17,6 +17,14 @@ export function saveAccount(data) {
   })
 }
 
+export function handleUpdate(data) {
+  return addInfo({
+    url: '/privilege/update',
+    method: 'post',
+    data: JSON.stringify(data)
+  })
+}
+
 export function handleDelete(data) {
   return HandleDelete({
     url: 'privilege/delete',
