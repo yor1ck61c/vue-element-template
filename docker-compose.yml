@@ -1,0 +1,8 @@
+version: '3'
+services:
+  frontend:
+    build: .
+    image: frontend
+    container_name: frontend
+    ports:
+      - "80:9528"
