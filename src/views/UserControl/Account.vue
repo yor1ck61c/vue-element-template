@@ -113,7 +113,7 @@
               <el-button style="float: right; padding: 3px 0" type="text" @click="addNewAccount=true">新增用户</el-button>
             </div>
             <div>
-              <el-table :data="AccountInfo" border style="font-size: 13px">
+              <el-table :data="AccountInfo.slice((currentPage - 1) * pagesize, currentPage * pagesize)" border style="font-size: 13px">
                 <el-table-column prop="id" label="序号" align="center" />
                 <el-table-column prop="username" label="用户名" align="center" />
                 <el-table-column prop="role" label="角色" align="center" />
@@ -124,6 +124,16 @@
                   </template>
                 </el-table-column>
               </el-table>
+              <el-pagination
+                :page-sizes="[5, 10, 20, 40]"
+                :current-page="currentPage"
+                :page-size="pagesize"
+                layout="total, sizes, prev, pager, next, jumper"
+                :total="AccountInfo.length"
+                style="text-align:center; margin-top: 50px;"
+                @size-change="handleSizeChange"
+                @current-change="handleCurrentChange"
+              />
             </div>
           </el-card>
         </el-col>
@@ -144,6 +154,8 @@ export default {
   data() {
     return {
       AccountInfo: [],
+      currentPage: 1, // 初始页
+      pagesize: 10,
       newAccountInfo: {
         username: '',
         password: '',
@@ -185,6 +197,14 @@ export default {
     this.queryAccountInfo()
   },
   methods: {
+    handleSizeChange: function(size) {
+      this.pagesize = size
+      console.log(this.pagesize) // 每页下拉显示数据
+    },
+    handleCurrentChange: function(currentPage) {
+      this.currentPage = currentPage
+      console.log(this.currentPage) // 点击第几页
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
