@@ -1,0 +1,38 @@
+name: Vue Package
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Push
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: .
+          target: /home/workplace/vue-element/
+
+      - name: Build and run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          command_timeout: 20m
+          script: |
+            cd /home/workplace/vue-element/
+            sh opt.sh stop frontend
+            sh opt.sh kill_by_port 80
+            sh opt.sh delete_container frontend
+            sh opt.sh delete_image frontend
+            docker-compose up -d
+            cd ..
+            rm -rf /home/workplace/vue-element/
