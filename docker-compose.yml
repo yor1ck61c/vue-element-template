@@ -5,4 +5,4 @@ services:
     image: frontend
     container_name: frontend
     ports:
-      - "80:9526"
+      - "8080:9526"
