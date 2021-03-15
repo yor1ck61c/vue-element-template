@@ -6,7 +6,7 @@ import { getToken } from '@/utils/auth'
 // create an axios instance
 const service = axios.create({
   // 跨域请求中使用了/api替换localhost：8080
-  baseURL: '/api', // url = base url + request url
+  baseURL: '', // url = base url + request url
   withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
   // 设定请求时传递json数据

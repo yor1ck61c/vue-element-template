@@ -36,7 +36,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
-    proxy: {
+    /* proxy: {
       '/api': {
         target: 'http://121.5.63.23:8080',
         changOrigin: true, // 允许跨域
@@ -44,7 +44,7 @@ module.exports = {
           '^/api': '' // 请求的时候使用这个api就可以
         }
       }
-    }
+    }*/
     // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
